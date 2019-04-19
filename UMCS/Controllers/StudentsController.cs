@@ -37,6 +37,8 @@ namespace UMCS.Controllers
                     Session["S_ID"] = model.ID;
                     Session["Username"] = model.Username;
                     Session["Img"] = model.Image.ToString();
+                    Session["MM_ID"] = null;
+                    Session["MC_ID"] = null;
                     return RedirectToAction("Repository/"+Session["S_ID"], "Students");
                 }
                 else
@@ -50,6 +52,8 @@ namespace UMCS.Controllers
                 if (modelMM.Password == MM.Password)
                 {
                     Session["MM_ID"] = modelMM.ID;
+                    Session["S_ID"] = null;
+                    Session["MC_ID"] = null;
                     Session["Username"] = modelMM.Username;
                     Session["Img"] = modelMM.Image.ToString();
                     return RedirectToAction("Index", "Home");
@@ -65,6 +69,8 @@ namespace UMCS.Controllers
                 if (modelMC.Password == MC.Password)
                 {
                     Session["MC_ID"] = modelMC.ID;
+                    Session["S_ID"] = null;
+                    Session["MM_ID"] = null;
                     Session["Username"] = modelMC.Username;
                     Session["Img"] = modelMC.Image.ToString();
                     return RedirectToAction("LoadData", "MarketingCoordinators");
