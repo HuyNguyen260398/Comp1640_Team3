@@ -1,0 +1,32 @@
+﻿@model List<UMCS.Models.Contribution>
+
+@{
+    ViewBag.Title = "Repository";
+    Layout = "~/Views/Layout/_Main.cshtml";
+}
+
+<div class="courses-area" style="margin-bottom:20px">
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="courses-inner res-mg-b-30" style="width:350px; height:350px">
+                        <div class="courses-title">
+                            <a href="#"><img src="@item.ArchiveLink" alt="" style="width:260px; height:180px"></a>
+                            <h2>@item.Title</h2>
+                        </div>
+                        <div class="course-des">
+                            <p><span><i class="fa fa-clock"></i></span> <b>Type:</b> @item.Type</p>
+                            <p><span><i class="fa fa-clock"></i></span> <b>File Type:</b> @item.FileType</p>
+                            <p><span><i class="fa fa-clock"></i></span> <b>Status:</b> @item.Status</p>
+                        </div>
+                        <div class="product-buttons">
+                            <button type="button" class="button-default cart-btn">View File</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,572 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{71A8FA47-1D1D-43CA-A39D-F7D282DB5286}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UMCS</RootNamespace>
+    <AssemblyName>UMCS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.13.3.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.13.3\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Models\MyModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MyModel.Context.cs</LastGenOutput>
+      <DependentUpon>MyModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\MyModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyModel.edmx</DependentUpon>
+      <LastGenOutput>MyModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Template\kiaalap-master\404.html" />
+    <Content Include="Template\kiaalap-master\500.html" />
+    <Content Include="Template\kiaalap-master\accordion.html" />
+    <Content Include="Template\kiaalap-master\add-course.html" />
+    <Content Include="Template\kiaalap-master\add-department.html" />
+    <Content Include="Template\kiaalap-master\add-library-assets.html" />
+    <Content Include="Template\kiaalap-master\add-professor.html" />
+    <Content Include="Template\kiaalap-master\add-student.html" />
+    <Content Include="Template\kiaalap-master\advance-form-element.html" />
+    <Content Include="Template\kiaalap-master\alerts.html" />
+    <Content Include="Template\kiaalap-master\all-courses.html" />
+    <Content Include="Template\kiaalap-master\all-professors.html" />
+    <Content Include="Template\kiaalap-master\all-students.html" />
+    <Content Include="Template\kiaalap-master\analytics.html" />
+    <Content Include="Template\kiaalap-master\area-charts.html" />
+    <Content Include="Template\kiaalap-master\bar-charts.html" />
+    <Content Include="Template\kiaalap-master\basic-form-element.html" />
+    <Content Include="Template\kiaalap-master\buttons.html" />
+    <Content Include="Template\kiaalap-master\c3.html" />
+    <Content Include="Template\kiaalap-master\code-editor.html" />
+    <Content Include="Template\kiaalap-master\course-info.html" />
+    <Content Include="Template\kiaalap-master\course-payment.html" />
+    <Content Include="Template\kiaalap-master\css\accordions.css" />
+    <Content Include="Template\kiaalap-master\css\alerts.css" />
+    <Content Include="Template\kiaalap-master\css\animate.css" />
+    <Content Include="Template\kiaalap-master\css\bootstrap.min.css" />
+    <Content Include="Template\kiaalap-master\css\buttons.css" />
+    <Content Include="Template\kiaalap-master\css\c3\c3.min.css" />
+    <Content Include="Template\kiaalap-master\css\calendar\fullcalendar.min.css" />
+    <Content Include="Template\kiaalap-master\css\calendar\fullcalendar.print.min.css" />
+    <Content Include="Template\kiaalap-master\css\chosen\bootstrap-chosen.css" />
+    <Content Include="Template\kiaalap-master\css\chosen\chosen-sprite.png" />
+    <Content Include="Template\kiaalap-master\css\code-editor\ambiance.css" />
+    <Content Include="Template\kiaalap-master\css\code-editor\codemirror.css" />
+    <Content Include="Template\kiaalap-master\css\colorpicker\colorpicker.css" />
+    <Content Include="Template\kiaalap-master\css\cropper\cropper.min.css" />
+    <Content Include="Template\kiaalap-master\css\data-table\bootstrap-editable.css" />
+    <Content Include="Template\kiaalap-master\css\data-table\bootstrap-table.css" />
+    <Content Include="Template\kiaalap-master\css\datapicker\colorpicker.css" />
+    <Content Include="Template\kiaalap-master\css\datapicker\datepicker3.css" />
+    <Content Include="Template\kiaalap-master\css\dropzone\dropzone.css" />
+    <Content Include="Template\kiaalap-master\css\duallistbox\bootstrap-duallistbox.min.css" />
+    <Content Include="Template\kiaalap-master\css\editor\bootstrap-editable.css" />
+    <Content Include="Template\kiaalap-master\css\editor\datetimepicker.css" />
+    <Content Include="Template\kiaalap-master\css\editor\select2.css" />
+    <Content Include="Template\kiaalap-master\css\editor\x-editor-style.css" />
+    <Content Include="Template\kiaalap-master\css\educate-custon-icon.css" />
+    <Content Include="Template\kiaalap-master\css\font-awesome.min.css" />
+    <Content Include="Template\kiaalap-master\css\form.css" />
+    <Content Include="Template\kiaalap-master\css\form\all-type-forms.css" />
+    <Content Include="Template\kiaalap-master\css\form\themesaller-forms.css" />
+    <Content Include="Template\kiaalap-master\css\ionRangeSlider\ion.rangeSlider.css" />
+    <Content Include="Template\kiaalap-master\css\ionRangeSlider\ion.rangeSlider.skinFlat.css" />
+    <Content Include="Template\kiaalap-master\css\ionRangeSlider\sprite-skin-flat.png" />
+    <Content Include="Template\kiaalap-master\css\main.css" />
+    <Content Include="Template\kiaalap-master\css\meanmenu.min.css" />
+    <Content Include="Template\kiaalap-master\css\metisMenu\metisMenu-vertical.css" />
+    <Content Include="Template\kiaalap-master\css\metisMenu\metisMenu.min.css" />
+    <Content Include="Template\kiaalap-master\css\modals.css" />
+    <Content Include="Template\kiaalap-master\css\morrisjs\morris.css" />
+    <Content Include="Template\kiaalap-master\css\normalize.css" />
+    <Content Include="Template\kiaalap-master\css\notifications\Lobibox.min.css" />
+    <Content Include="Template\kiaalap-master\css\notifications\notifications.css" />
+    <Content Include="Template\kiaalap-master\css\owl.carousel.css" />
+    <Content Include="Template\kiaalap-master\css\owl.theme.css" />
+    <Content Include="Template\kiaalap-master\css\owl.transitions.css" />
+    <Content Include="Template\kiaalap-master\css\preloader\preloader-style.css" />
+    <Content Include="Template\kiaalap-master\css\responsive.css" />
+    <Content Include="Template\kiaalap-master\css\scrollbar\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Template\kiaalap-master\css\select2\select2.min.css" />
+    <Content Include="Template\kiaalap-master\css\summernote\summernote.css" />
+    <Content Include="Template\kiaalap-master\css\tabs.css" />
+    <Content Include="Template\kiaalap-master\css\touchspin\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="Template\kiaalap-master\css\tree-viewer\32px.png" />
+    <Content Include="Template\kiaalap-master\css\tree-viewer\throbber.gif" />
+    <Content Include="Template\kiaalap-master\css\tree-viewer\tree-viewer.css" />
+    <Content Include="Template\kiaalap-master\data-maps.html" />
+    <Content Include="Template\kiaalap-master\data-table.html" />
+    <Content Include="Template\kiaalap-master\departments.html" />
+    <Content Include="Template\kiaalap-master\dual-list-box.html" />
+    <Content Include="Template\kiaalap-master\edit-course.html" />
+    <Content Include="Template\kiaalap-master\edit-department.html" />
+    <Content Include="Template\kiaalap-master\edit-library-assets.html" />
+    <Content Include="Template\kiaalap-master\edit-professor.html" />
+    <Content Include="Template\kiaalap-master\edit-student.html" />
+    <Content Include="Template\kiaalap-master\events.html" />
+    <Content Include="Template\kiaalap-master\fonts\educate-icon.svg" />
+    <Content Include="Template\kiaalap-master\fonts\fontawesome-webfont.svg" />
+    <Content Include="Template\kiaalap-master\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Template\kiaalap-master\google-map.html" />
+    <Content Include="Template\kiaalap-master\images-cropper.html" />
+    <Content Include="Template\kiaalap-master\img\blog-details\1.jpg" />
+    <Content Include="Template\kiaalap-master\img\contact\1.jpg" />
+    <Content Include="Template\kiaalap-master\img\contact\2.jpg" />
+    <Content Include="Template\kiaalap-master\img\contact\3.jpg" />
+    <Content Include="Template\kiaalap-master\img\contact\4.jpg" />
+    <Content Include="Template\kiaalap-master\img\courses\1.jpg" />
+    <Content Include="Template\kiaalap-master\img\courses\2.jpg" />
+    <Content Include="Template\kiaalap-master\img\courses\3.jpg" />
+    <Content Include="Template\kiaalap-master\img\cropper\1.jpg" />
+    <Content Include="Template\kiaalap-master\img\favicon.ico" />
+    <Content Include="Template\kiaalap-master\img\green1.png" />
+    <Content Include="Template\kiaalap-master\img\logo\logo.png" />
+    <Content Include="Template\kiaalap-master\img\logo\logosn.png" />
+    <Content Include="Template\kiaalap-master\img\notification\1.jpg" />
+    <Content Include="Template\kiaalap-master\img\notification\2.jpg" />
+    <Content Include="Template\kiaalap-master\img\notification\3.jpg" />
+    <Content Include="Template\kiaalap-master\img\notification\4.jpg" />
+    <Content Include="Template\kiaalap-master\img\notification\5.jpg" />
+    <Content Include="Template\kiaalap-master\img\notification\6.jpg" />
+    <Content Include="Template\kiaalap-master\img\product\book-1.jpg" />
+    <Content Include="Template\kiaalap-master\img\product\book-2.jpg" />
+    <Content Include="Template\kiaalap-master\img\product\book-3.jpg" />
+    <Content Include="Template\kiaalap-master\img\product\book-4.jpg" />
+    <Content Include="Template\kiaalap-master\img\product\pro4.jpg" />
+    <Content Include="Template\kiaalap-master\img\product\profile-bg.jpg" />
+    <Content Include="Template\kiaalap-master\img\profile\1.jpg" />
+    <Content Include="Template\kiaalap-master\img\student\1.jpg" />
+    <Content Include="Template\kiaalap-master\img\student\2.jpg" />
+    <Content Include="Template\kiaalap-master\img\student\3.jpg" />
+    <Content Include="Template\kiaalap-master\img\student\4.jpg" />
+    <Content Include="Template\kiaalap-master\index-1.html" />
+    <Content Include="Template\kiaalap-master\index-2.html" />
+    <Content Include="Template\kiaalap-master\index.html" />
+    <Content Include="Template\kiaalap-master\js\bootstrap.min.js" />
+    <Content Include="Template\kiaalap-master\js\c3-charts\c3-active.js" />
+    <Content Include="Template\kiaalap-master\js\c3-charts\c3.min.js" />
+    <Content Include="Template\kiaalap-master\js\c3-charts\d3.min.js" />
+    <Content Include="Template\kiaalap-master\js\calendar\fullcalendar-active.js" />
+    <Content Include="Template\kiaalap-master\js\calendar\fullcalendar.min.js" />
+    <Content Include="Template\kiaalap-master\js\calendar\moment.min.js" />
+    <Content Include="Template\kiaalap-master\js\card.js" />
+    <Content Include="Template\kiaalap-master\js\charts\area-chart.js" />
+    <Content Include="Template\kiaalap-master\js\charts\bar-chart.js" />
+    <Content Include="Template\kiaalap-master\js\charts\Chart.js" />
+    <Content Include="Template\kiaalap-master\js\charts\line-chart.js" />
+    <Content Include="Template\kiaalap-master\js\charts\rounded-chart.js" />
+    <Content Include="Template\kiaalap-master\js\chart\jquery.peity.min.js" />
+    <Content Include="Template\kiaalap-master\js\chart\peity-active.js" />
+    <Content Include="Template\kiaalap-master\js\chosen\chosen-active.js" />
+    <Content Include="Template\kiaalap-master\js\chosen\chosen.jquery.js" />
+    <Content Include="Template\kiaalap-master\js\code-editor\code-editor-active.js" />
+    <Content Include="Template\kiaalap-master\js\code-editor\code-editor.js" />
+    <Content Include="Template\kiaalap-master\js\code-editor\codemirror.js" />
+    <Content Include="Template\kiaalap-master\js\colorpicker\color-picker-active.js" />
+    <Content Include="Template\kiaalap-master\js\colorpicker\jquery.spectrum.min.js" />
+    <Content Include="Template\kiaalap-master\js\counterup\counterup-active.js" />
+    <Content Include="Template\kiaalap-master\js\counterup\jquery.counterup.min.js" />
+    <Content Include="Template\kiaalap-master\js\counterup\waypoints.min.js" />
+    <Content Include="Template\kiaalap-master\js\cropper\cropper-actice.js" />
+    <Content Include="Template\kiaalap-master\js\cropper\cropper.min.js" />
+    <Content Include="Template\kiaalap-master\js\data-map\d3.min.js" />
+    <Content Include="Template\kiaalap-master\js\data-map\data-maps-active.js" />
+    <Content Include="Template\kiaalap-master\js\data-map\datamaps.all.min.js" />
+    <Content Include="Template\kiaalap-master\js\data-map\topojson.js" />
+    <Content Include="Template\kiaalap-master\js\data-table\bootstrap-editable.js" />
+    <Content Include="Template\kiaalap-master\js\data-table\bootstrap-table-editable.js" />
+    <Content Include="Template\kiaalap-master\js\data-table\bootstrap-table-export.js" />
+    <Content Include="Template\kiaalap-master\js\data-table\bootstrap-table-resizable.js" />
+    <Content Include="Template\kiaalap-master\js\data-table\bootstrap-table.js" />
+    <Content Include="Template\kiaalap-master\js\data-table\colResizable-1.5.source.js" />
+    <Content Include="Template\kiaalap-master\js\data-table\data-table-active.js" />
+    <Content Include="Template\kiaalap-master\js\data-table\tableExport.js" />
+    <Content Include="Template\kiaalap-master\js\datapicker\bootstrap-datepicker.js" />
+    <Content Include="Template\kiaalap-master\js\datapicker\datepicker-active.js" />
+    <Content Include="Template\kiaalap-master\js\datepicker\datepicker-active.js" />
+    <Content Include="Template\kiaalap-master\js\datepicker\jquery-ui.min.js" />
+    <Content Include="Template\kiaalap-master\js\dropzone\dropzone.js" />
+    <Content Include="Template\kiaalap-master\js\duallistbox\duallistbox.active.js" />
+    <Content Include="Template\kiaalap-master\js\duallistbox\jquery.bootstrap-duallistbox.js" />
+    <Content Include="Template\kiaalap-master\js\e-payment.js" />
+    <Content Include="Template\kiaalap-master\js\editable\bootstrap-datetimepicker.js" />
+    <Content Include="Template\kiaalap-master\js\editable\bootstrap-editable.js" />
+    <Content Include="Template\kiaalap-master\js\editable\jquery.mockjax.js" />
+    <Content Include="Template\kiaalap-master\js\editable\mock-active.js" />
+    <Content Include="Template\kiaalap-master\js\editable\moment.min.js" />
+    <Content Include="Template\kiaalap-master\js\editable\select2.js" />
+    <Content Include="Template\kiaalap-master\js\editable\xediable-active.js" />
+    <Content Include="Template\kiaalap-master\js\form-validation\form-active.js" />
+    <Content Include="Template\kiaalap-master\js\form-validation\jquery.form.min.js" />
+    <Content Include="Template\kiaalap-master\js\form-validation\jquery.validate.min.js" />
+    <Content Include="Template\kiaalap-master\js\google.maps\google.maps-active.js" />
+    <Content Include="Template\kiaalap-master\js\icheck\icheck-active.js" />
+    <Content Include="Template\kiaalap-master\js\icheck\icheck.min.js" />
+    <Content Include="Template\kiaalap-master\js\input-mask\jasny-bootstrap.min.js" />
+    <Content Include="Template\kiaalap-master\js\ionRangeSlider\ion.rangeSlider.active.js" />
+    <Content Include="Template\kiaalap-master\js\ionRangeSlider\ion.rangeSlider.min.js" />
+    <Content Include="Template\kiaalap-master\js\jquery-price-slider.js" />
+    <Content Include="Template\kiaalap-master\js\jquery.maskedinput.min.js" />
+    <Content Include="Template\kiaalap-master\js\jquery.meanmenu.js" />
+    <Content Include="Template\kiaalap-master\js\jquery.payform.min.js" />
+    <Content Include="Template\kiaalap-master\js\jquery.scrollUp.min.js" />
+    <Content Include="Template\kiaalap-master\js\jquery.sticky.js" />
+    <Content Include="Template\kiaalap-master\js\knob\jquery.knob.js" />
+    <Content Include="Template\kiaalap-master\js\knob\knob-active.js" />
+    <Content Include="Template\kiaalap-master\js\main.js" />
+    <Content Include="Template\kiaalap-master\js\masking-active.js" />
+    <Content Include="Template\kiaalap-master\js\metisMenu\metisMenu-active.js" />
+    <Content Include="Template\kiaalap-master\js\metisMenu\metisMenu.min.js" />
+    <Content Include="Template\kiaalap-master\js\morrisjs\home3-active.js" />
+    <Content Include="Template\kiaalap-master\js\morrisjs\morris-active-pro.js" />
+    <Content Include="Template\kiaalap-master\js\morrisjs\morris-active.js" />
+    <Content Include="Template\kiaalap-master\js\morrisjs\morris.js" />
+    <Content Include="Template\kiaalap-master\js\morrisjs\raphael-min.js" />
+    <Content Include="Template\kiaalap-master\js\multiple-email\multiple-email-active.js" />
+    <Content Include="Template\kiaalap-master\js\notifications\Lobibox.js" />
+    <Content Include="Template\kiaalap-master\js\notifications\notification-active.js" />
+    <Content Include="Template\kiaalap-master\js\owl.carousel.min.js" />
+    <Content Include="Template\kiaalap-master\js\password-meter\password-meter-active.js" />
+    <Content Include="Template\kiaalap-master\js\password-meter\pwstrength-bootstrap.min.js" />
+    <Content Include="Template\kiaalap-master\js\password-meter\zxcvbn.js" />
+    <Content Include="Template\kiaalap-master\js\pdf\jquery.media.js" />
+    <Content Include="Template\kiaalap-master\js\pdf\pdf-active.js" />
+    <Content Include="Template\kiaalap-master\js\peity\jquery.peity.min.js" />
+    <Content Include="Template\kiaalap-master\js\peity\peity-active.js" />
+    <Content Include="Template\kiaalap-master\js\plugins.js" />
+    <Content Include="Template\kiaalap-master\js\rangle-slider\jquery-ui-1.10.4.custom.min.js" />
+    <Content Include="Template\kiaalap-master\js\rangle-slider\jquery-ui-touch-punch.min.js" />
+    <Content Include="Template\kiaalap-master\js\rangle-slider\rangle-active.js" />
+    <Content Include="Template\kiaalap-master\js\scrollbar\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Template\kiaalap-master\js\scrollbar\mCustomScrollbar-active.js" />
+    <Content Include="Template\kiaalap-master\js\select2\select2-active.js" />
+    <Content Include="Template\kiaalap-master\js\select2\select2.full.min.js" />
+    <Content Include="Template\kiaalap-master\js\sparkline\jquery.charts-sparkline.js" />
+    <Content Include="Template\kiaalap-master\js\sparkline\jquery.sparkline.min.js" />
+    <Content Include="Template\kiaalap-master\js\sparkline\sparkline-active.js" />
+    <Content Include="Template\kiaalap-master\js\summernote\summernote-active.js" />
+    <Content Include="Template\kiaalap-master\js\summernote\summernote.min.js" />
+    <Content Include="Template\kiaalap-master\js\tab.js" />
+    <Content Include="Template\kiaalap-master\js\tawk-chat.js" />
+    <Content Include="Template\kiaalap-master\js\touchspin\jquery.bootstrap-touchspin.min.js" />
+    <Content Include="Template\kiaalap-master\js\touchspin\touchspin-active.js" />
+    <Content Include="Template\kiaalap-master\js\tree-line\jstree.active.js" />
+    <Content Include="Template\kiaalap-master\js\tree-line\jstree.min.js" />
+    <Content Include="Template\kiaalap-master\js\vendor\jquery-1.12.4.min.js" />
+    <Content Include="Template\kiaalap-master\js\vendor\modernizr-2.8.3.min.js" />
+    <Content Include="Template\kiaalap-master\js\wizard\jquery.steps.js" />
+    <Content Include="Template\kiaalap-master\js\wizard\steps-active.js" />
+    <Content Include="Template\kiaalap-master\js\wow.min.js" />
+    <Content Include="Template\kiaalap-master\library-assets.html" />
+    <Content Include="Template\kiaalap-master\line-charts.html" />
+    <Content Include="Template\kiaalap-master\lock.html" />
+    <Content Include="Template\kiaalap-master\login.html" />
+    <Content Include="Template\kiaalap-master\mailbox-compose.html" />
+    <Content Include="Template\kiaalap-master\mailbox-view.html" />
+    <Content Include="Template\kiaalap-master\mailbox.html" />
+    <Content Include="Template\kiaalap-master\modals.html" />
+    <Content Include="Template\kiaalap-master\multi-upload.html" />
+    <Content Include="Template\kiaalap-master\notifications.html" />
+    <Content Include="Template\kiaalap-master\password-meter.html" />
+    <Content Include="Template\kiaalap-master\password-recovery.html" />
+    <Content Include="Template\kiaalap-master\pdf-viewer.html" />
+    <Content Include="Template\kiaalap-master\peity.html" />
+    <Content Include="Template\kiaalap-master\preloader.html" />
+    <Content Include="Template\kiaalap-master\professor-profile.html" />
+    <Content Include="Template\kiaalap-master\register.html" />
+    <Content Include="Template\kiaalap-master\rounded-chart.html" />
+    <Content Include="Template\kiaalap-master\sparkline.html" />
+    <Content Include="Template\kiaalap-master\static-table.html" />
+    <Content Include="Template\kiaalap-master\student-profile.html" />
+    <Content Include="Template\kiaalap-master\style.css" />
+    <Content Include="Template\kiaalap-master\tabs.html" />
+    <Content Include="Template\kiaalap-master\tinymc.html" />
+    <Content Include="Template\kiaalap-master\tree-view.html" />
+    <Content Include="Template\kiaalap-master\widgets.html" />
+    <Content Include="Template\kiaalap-master\x-editable.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MarketingCoordinatorsController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contribution.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Extended\Student.cs" />
+    <Compile Include="Models\Faculty.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Faculty1.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MarketingCoordinator.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MarketingManager.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Student.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Template\kiaalap-master\css\summernote\fonts\summernote.eot" />
+    <Content Include="Template\kiaalap-master\css\summernote\fonts\summernote.ttf" />
+    <Content Include="Template\kiaalap-master\css\summernote\fonts\summernote.woff" />
+    <Content Include="Template\kiaalap-master\fonts\educate-icon.ttf" />
+    <Content Include="Template\kiaalap-master\fonts\educate-icon.woff" />
+    <Content Include="Template\kiaalap-master\fonts\fontawesome-webfont.eot" />
+    <Content Include="Template\kiaalap-master\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Template\kiaalap-master\fonts\fontawesome-webfont.woff" />
+    <Content Include="Template\kiaalap-master\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Template\kiaalap-master\fonts\FontAwesome.otf" />
+    <Content Include="Template\kiaalap-master\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Template\kiaalap-master\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Template\kiaalap-master\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Template\kiaalap-master\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Template\kiaalap-master\pdf\mamunur.pdf" />
+    <Content Include="Template\kiaalap-master\README.md" />
+    <EntityDeploy Include="Models\MyModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MyModel.edmx.diagram">
+      <DependentUpon>MyModel.edmx</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Views\Layout\_Main.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Students\Login.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Students\Upload.cshtml" />
+    <Content Include="Views\Students\Repository.cshtml" />
+    <Content Include="Views\Layout\MM.cshtml" />
+    <Content Include="Views\Layout\MC.cshtml" />
+    <Content Include="Views\MarketingCoordinators\SendEmail.cshtml" />
+    <Content Include="Views\MarketingCoordinators\LoadData.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Avatars\" />
+    <Folder Include="Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55734</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55734/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
