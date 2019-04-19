@@ -109,6 +109,7 @@ namespace UMCS.Controllers
 
             var s_id = Convert.ToInt32(Session["S_ID"]);
             var student = db.Students.SingleOrDefault(s => s.ID == s_id);
+            var marketing_coordinator = db.MarketingCoordinators.SingleOrDefault(a => a.FacultyID == student.FacultiesID);
             
             if (file != null && file.ContentLength > 0)
             {
@@ -152,6 +153,8 @@ namespace UMCS.Controllers
                     db.SaveChanges();
 
                     ViewBag.Message = "File uploaded successfully!";
+
+                    SendEmail(marketing_coordinator.Email, s_id);
                 }
                 catch (Exception ex)
                 {
@@ -184,13 +187,13 @@ namespace UMCS.Controllers
         }
 
         [NonAction]
-        public void SendEmail(string student_email, int student_id)
+        public void SendEmail(string mc_email, int student_id)
         {
             var student = db.Students.SingleOrDefault(s => s.ID == student_id);
 
-            var fromEmail = new MailAddress("maxanlee1998@gmail.com");
-            var toEmail = new MailAddress(student_email);
-            var fromEmailPassword = "nagato,.12";
+            var fromEmail = new MailAddress("umcsystem@gmail.com");
+            var toEmail = new MailAddress(mc_email);
+            var fromEmailPassword = "Comp1640";
             string subject = "Student " + student.FirstName + "_SID" + student.ID + "_" + student.Faculty.FacultyName + " has uploaded a file to system!";
             string body = "<p>Click <a href='#'>here</a> to view!";
 
