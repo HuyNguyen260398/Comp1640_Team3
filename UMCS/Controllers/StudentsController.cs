@@ -171,8 +171,8 @@ namespace UMCS.Controllers
             {
                 ViewBag.Message = "You have not specified a file!";
             }
-            
-            return View();
+
+            return RedirectToAction("Repository/" + Session["S_ID"], "Students");
         }
 
         public ActionResult Repository(string id)
