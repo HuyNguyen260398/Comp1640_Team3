@@ -17,7 +17,7 @@ namespace UMCS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MarketingManager()
         {
-            this.MarketingCoordinators = new HashSet<MarketingCoordinator>();
+            this.Faculties = new HashSet<Faculty1>();
         }
     
         public int ID { get; set; }
@@ -33,6 +33,6 @@ namespace UMCS.Models
         public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MarketingCoordinator> MarketingCoordinators { get; set; }
+        public virtual ICollection<Faculty1> Faculties { get; set; }
     }
 }

@@ -4,7 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="UMCSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="UMCSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Contributions">
           <Key>
             <PropertyRef Name="ID" />
@@ -32,26 +39,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FacultiesID" Type="int" />
-          <Property Name="MarketingCoordinatorID" Type="int" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
-          <Property Name="Age" Type="int" />
-          <Property Name="Image" Type="varchar" MaxLength="100" />
-          <Property Name="Phone" Type="varchar" MaxLength="20" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="Address" Type="nvarchar" MaxLength="50" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="MarketingCoordinators">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MarketingManagerID" Type="int" />
-          <Property Name="FacultyID" Type="int" />
+          <Property Name="FacultiesID" Type="int" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Gender" Type="nvarchar" MaxLength="10" />
@@ -108,55 +98,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Faculty__Faculti__3F466844">
-          <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Faculties">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Faculty">
-              <PropertyRef Name="FacultiesID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Faculty__Marketi__403A8C7D">
-          <End Role="MarketingCoordinators" Type="Self.MarketingCoordinators" Multiplicity="0..1" />
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MarketingCoordinators">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Faculty">
-              <PropertyRef Name="MarketingCoordinatorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Marketing__Facul__3C69FB99">
-          <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
-          <End Role="MarketingCoordinators" Type="Self.MarketingCoordinators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Faculties">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="MarketingCoordinators">
-              <PropertyRef Name="FacultyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Marketing__Marke__3B75D760">
-          <End Role="MarketingManager" Type="Self.MarketingManager" Multiplicity="0..1" />
-          <End Role="MarketingCoordinators" Type="Self.MarketingCoordinators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MarketingManager">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="MarketingCoordinators">
-              <PropertyRef Name="MarketingManagerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Students__Facult__4316F928">
+        <Association Name="FK__Students__Facult__31EC6D26">
           <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
           <End Role="Students" Type="Self.Students" Multiplicity="*" />
           <ReferentialConstraint>
@@ -168,42 +110,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Faculty_Faculties">
+          <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculties">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Faculty">
+              <PropertyRef Name="FacultiesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faculty_MarketingManager">
+          <End Role="MarketingManager" Type="Self.MarketingManager" Multiplicity="0..1" />
+          <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarketingManager">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Faculty">
+              <PropertyRef Name="MarketingManagerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="UMCSModelStoreContainer">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contributions" EntityType="Self.Contributions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculties" EntityType="Self.Faculties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MarketingCoordinators" EntityType="Self.MarketingCoordinators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketingManager" EntityType="Self.MarketingManager" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Contribut__Stude__45F365D3" Association="Self.FK__Contribut__Stude__45F365D3">
             <End Role="Students" EntitySet="Students" />
             <End Role="Contributions" EntitySet="Contributions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Faculty__Faculti__3F466844" Association="Self.FK__Faculty__Faculti__3F466844">
-            <End Role="Faculties" EntitySet="Faculties" />
-            <End Role="Faculty" EntitySet="Faculty" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Faculty__Marketi__403A8C7D" Association="Self.FK__Faculty__Marketi__403A8C7D">
-            <End Role="MarketingCoordinators" EntitySet="MarketingCoordinators" />
-            <End Role="Faculty" EntitySet="Faculty" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Marketing__Facul__3C69FB99" Association="Self.FK__Marketing__Facul__3C69FB99">
-            <End Role="Faculties" EntitySet="Faculties" />
-            <End Role="MarketingCoordinators" EntitySet="MarketingCoordinators" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Marketing__Marke__3B75D760" Association="Self.FK__Marketing__Marke__3B75D760">
-            <End Role="MarketingManager" EntitySet="MarketingManager" />
-            <End Role="MarketingCoordinators" EntitySet="MarketingCoordinators" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Students__Facult__4316F928" Association="Self.FK__Students__Facult__4316F928">
+          <AssociationSet Name="FK__Students__Facult__31EC6D26" Association="Self.FK__Students__Facult__31EC6D26">
             <End Role="Faculties" EntitySet="Faculties" />
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
+          <AssociationSet Name="FK_Faculty_Faculties" Association="Self.FK_Faculty_Faculties">
+            <End Role="Faculties" EntitySet="Faculties" />
+            <End Role="Faculty" EntitySet="Faculty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faculty_MarketingManager" Association="Self.FK_Faculty_MarketingManager">
+            <End Role="MarketingManager" EntitySet="MarketingManager" />
+            <End Role="Faculty" EntitySet="Faculty" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UMCSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Contribution">
           <Key>
             <PropertyRef Name="ID" />
@@ -215,10 +181,10 @@
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FileType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ArchiveLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Student" Relationship="Self.FK__Contribut__Stude__45F365D3" FromRole="Contributions" ToRole="Students" />
-          <Property Name="FileType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
@@ -226,37 +192,17 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FacultyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Faculties" Relationship="Self.FK__Faculty__Faculti__3F466844" FromRole="Faculties" ToRole="Faculty" />
-          <NavigationProperty Name="MarketingCoordinators" Relationship="Self.FK__Marketing__Facul__3C69FB99" FromRole="Faculties" ToRole="MarketingCoordinators" />
-          <NavigationProperty Name="Students" Relationship="Self.FK__Students__Facult__4316F928" FromRole="Faculties" ToRole="Students" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Students__Facult__31EC6D26" FromRole="Faculties" ToRole="Students" />
+          <NavigationProperty Name="Faculties" Relationship="Self.FK_Faculty_Faculties" FromRole="Faculties" ToRole="Faculty" />
         </EntityType>
         <EntityType Name="Faculty1">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FacultiesID" Type="Int32" />
-          <Property Name="MarketingCoordinatorID" Type="Int32" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Age" Type="Int32" />
-          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Faculty" Relationship="Self.FK__Faculty__Faculti__3F466844" FromRole="Faculty" ToRole="Faculties" />
-          <NavigationProperty Name="MarketingCoordinator" Relationship="Self.FK__Faculty__Marketi__403A8C7D" FromRole="Faculty" ToRole="MarketingCoordinators" />
-        </EntityType>
-        <EntityType Name="MarketingCoordinator">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MarketingManagerID" Type="Int32" />
-          <Property Name="FacultyID" Type="Int32" />
+          <Property Name="FacultiesID" Type="Int32" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -267,9 +213,8 @@
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Faculty" Relationship="Self.FK__Marketing__Facul__3C69FB99" FromRole="MarketingCoordinators" ToRole="Faculties" />
-          <NavigationProperty Name="Faculties" Relationship="Self.FK__Faculty__Marketi__403A8C7D" FromRole="MarketingCoordinators" ToRole="Faculty" />
-          <NavigationProperty Name="MarketingManager" Relationship="Self.FK__Marketing__Marke__3B75D760" FromRole="MarketingCoordinators" ToRole="MarketingManager" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK_Faculty_Faculties" FromRole="Faculty" ToRole="Faculties" />
+          <NavigationProperty Name="MarketingManager" Relationship="Self.FK_Faculty_MarketingManager" FromRole="Faculty" ToRole="MarketingManager" />
         </EntityType>
         <EntityType Name="MarketingManager">
           <Key>
@@ -286,7 +231,7 @@
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="MarketingCoordinators" Relationship="Self.FK__Marketing__Marke__3B75D760" FromRole="MarketingManager" ToRole="MarketingCoordinators" />
+          <NavigationProperty Name="Faculties" Relationship="Self.FK_Faculty_MarketingManager" FromRole="MarketingManager" ToRole="Faculty" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -305,7 +250,7 @@
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Contributions" Relationship="Self.FK__Contribut__Stude__45F365D3" FromRole="Students" ToRole="Contributions" />
-          <NavigationProperty Name="Faculty" Relationship="Self.FK__Students__Facult__4316F928" FromRole="Students" ToRole="Faculties" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK__Students__Facult__31EC6D26" FromRole="Students" ToRole="Faculties" />
         </EntityType>
         <Association Name="FK__Contribut__Stude__45F365D3">
           <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
@@ -319,31 +264,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Faculty__Faculti__3F466844">
-          <End Role="Faculties" Type="Self.Faculty" Multiplicity="0..1" />
-          <End Role="Faculty" Type="Self.Faculty1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Faculties">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Faculty">
-              <PropertyRef Name="FacultiesID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Marketing__Facul__3C69FB99">
-          <End Role="Faculties" Type="Self.Faculty" Multiplicity="0..1" />
-          <End Role="MarketingCoordinators" Type="Self.MarketingCoordinator" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Faculties">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="MarketingCoordinators">
-              <PropertyRef Name="FacultyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Students__Facult__4316F928">
+        <Association Name="FK__Students__Facult__31EC6D26">
           <End Role="Faculties" Type="Self.Faculty" Multiplicity="0..1" />
           <End Role="Students" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -355,60 +276,52 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Faculty__Marketi__403A8C7D">
-          <End Role="MarketingCoordinators" Type="Self.MarketingCoordinator" Multiplicity="0..1" />
+        <Association Name="FK_Faculty_Faculties">
+          <End Role="Faculties" Type="Self.Faculty" Multiplicity="0..1" />
           <End Role="Faculty" Type="Self.Faculty1" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MarketingCoordinators">
+            <Principal Role="Faculties">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Faculty">
-              <PropertyRef Name="MarketingCoordinatorID" />
+              <PropertyRef Name="FacultiesID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Marketing__Marke__3B75D760">
+        <Association Name="FK_Faculty_MarketingManager">
           <End Role="MarketingManager" Type="Self.MarketingManager" Multiplicity="0..1" />
-          <End Role="MarketingCoordinators" Type="Self.MarketingCoordinator" Multiplicity="*" />
+          <End Role="Faculty" Type="Self.Faculty1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MarketingManager">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="MarketingCoordinators">
+            <Dependent Role="Faculty">
               <PropertyRef Name="MarketingManagerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="UMCSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrators" EntityType="Self.Administrator" />
           <EntitySet Name="Contributions" EntityType="Self.Contribution" />
           <EntitySet Name="Faculties" EntityType="Self.Faculty" />
           <EntitySet Name="Faculties1" EntityType="Self.Faculty1" />
-          <EntitySet Name="MarketingCoordinators" EntityType="Self.MarketingCoordinator" />
           <EntitySet Name="MarketingManagers" EntityType="Self.MarketingManager" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <AssociationSet Name="FK__Contribut__Stude__45F365D3" Association="Self.FK__Contribut__Stude__45F365D3">
             <End Role="Students" EntitySet="Students" />
             <End Role="Contributions" EntitySet="Contributions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Faculty__Faculti__3F466844" Association="Self.FK__Faculty__Faculti__3F466844">
-            <End Role="Faculties" EntitySet="Faculties" />
-            <End Role="Faculty" EntitySet="Faculties1" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Marketing__Facul__3C69FB99" Association="Self.FK__Marketing__Facul__3C69FB99">
-            <End Role="Faculties" EntitySet="Faculties" />
-            <End Role="MarketingCoordinators" EntitySet="MarketingCoordinators" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Students__Facult__4316F928" Association="Self.FK__Students__Facult__4316F928">
+          <AssociationSet Name="FK__Students__Facult__31EC6D26" Association="Self.FK__Students__Facult__31EC6D26">
             <End Role="Faculties" EntitySet="Faculties" />
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
-          <AssociationSet Name="FK__Faculty__Marketi__403A8C7D" Association="Self.FK__Faculty__Marketi__403A8C7D">
-            <End Role="MarketingCoordinators" EntitySet="MarketingCoordinators" />
+          <AssociationSet Name="FK_Faculty_Faculties" Association="Self.FK_Faculty_Faculties">
+            <End Role="Faculties" EntitySet="Faculties" />
             <End Role="Faculty" EntitySet="Faculties1" />
           </AssociationSet>
-          <AssociationSet Name="FK__Marketing__Marke__3B75D760" Association="Self.FK__Marketing__Marke__3B75D760">
+          <AssociationSet Name="FK_Faculty_MarketingManager" Association="Self.FK_Faculty_MarketingManager">
             <End Role="MarketingManager" EntitySet="MarketingManagers" />
-            <End Role="MarketingCoordinators" EntitySet="MarketingCoordinators" />
+            <End Role="Faculty" EntitySet="Faculties1" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -417,10 +330,17 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="UMCSModelStoreContainer" CdmEntityContainer="UMCSEntities">
+          <EntitySetMapping Name="Administrators">
+            <EntityTypeMapping TypeName="UMCSModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrator">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Contributions">
             <EntityTypeMapping TypeName="UMCSModel.Contribution">
               <MappingFragment StoreEntitySet="Contributions">
-                <ScalarProperty Name="FileType" ColumnName="FileType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -428,6 +348,7 @@
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
                 <ScalarProperty Name="ArchiveLink" ColumnName="ArchiveLink" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
@@ -445,27 +366,9 @@
             <EntityTypeMapping TypeName="UMCSModel.Faculty1">
               <MappingFragment StoreEntitySet="Faculty">
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FacultiesID" ColumnName="FacultiesID" />
-                <ScalarProperty Name="MarketingCoordinatorID" ColumnName="MarketingCoordinatorID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MarketingCoordinators">
-            <EntityTypeMapping TypeName="UMCSModel.MarketingCoordinator">
-              <MappingFragment StoreEntitySet="MarketingCoordinators">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MarketingManagerID" ColumnName="MarketingManagerID" />
-                <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="FacultiesID" ColumnName="FacultiesID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />

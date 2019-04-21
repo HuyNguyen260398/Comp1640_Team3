@@ -15,8 +15,9 @@ namespace UMCS.Models
     public partial class Faculty1
     {
         public int ID { get; set; }
+        public Nullable<int> MarketingManagerID { get; set; }
         public Nullable<int> FacultiesID { get; set; }
-        public Nullable<int> MarketingCoordinatorID { get; set; }
+        public string Role { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
@@ -29,6 +30,6 @@ namespace UMCS.Models
         public string Password { get; set; }
     
         public virtual Faculty Faculty { get; set; }
-        public virtual MarketingCoordinator MarketingCoordinator { get; set; }
+        public virtual MarketingManager MarketingManager { get; set; }
     }
 }

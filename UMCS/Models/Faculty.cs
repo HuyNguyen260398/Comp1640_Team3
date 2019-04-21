@@ -17,19 +17,16 @@ namespace UMCS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Faculty()
         {
-            this.Faculties = new HashSet<Faculty1>();
-            this.MarketingCoordinators = new HashSet<MarketingCoordinator>();
             this.Students = new HashSet<Student>();
+            this.Faculties = new HashSet<Faculty1>();
         }
     
         public int ID { get; set; }
         public string FacultyName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Faculty1> Faculties { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MarketingCoordinator> MarketingCoordinators { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Students { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Faculty1> Faculties { get; set; }
     }
 }

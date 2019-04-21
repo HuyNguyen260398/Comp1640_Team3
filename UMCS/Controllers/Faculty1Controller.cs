@@ -11,68 +11,18 @@ using UMCS.Models;
 
 namespace UMCS.Controllers
 {
-    public class MarketingCoordinatorsController : Controller
+    public class Faculty1Controller : Controller
     {
         private UMCSEntities db = new UMCSEntities();
 
-        public ActionResult Accept()
+        // GET: MarketingCoordinators
+        public ActionResult Index()
         {
-            return View();
+            var faculties1 = db.Faculties1.Include(f => f.Faculty).Include(f => f.MarketingManager);
+            return View(faculties1.ToList());
         }
 
-        [HttpGet]
-        public ActionResult SendEmail()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult SendEmail(string s_email, string cc, string subject, string body)
-        {
-            //var student = db.Students.SingleOrDefault(s => s.ID == student_id);
-
-            var fromEmail = new MailAddress("umcsystem@gmail.com");
-            var toEmail = new MailAddress(s_email);
-            var fromEmailPassword = "Comp1640";
-
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
-            };
-
-            using (var message = new MailMessage(fromEmail, toEmail)
-            {
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true,
-            })
-                smtp.Send(message);
-            return View();
-        }
-
-        public ActionResult LoadData()
-        {
-            var files = db.Contributions.Where(f => f.Status == "Pending").ToList();
-            return View(files);
-        }
-
-
-        public ActionResult Bt_Accept(string id)
-        {
-            int c_id = Convert.ToInt32(id);
-            db.Contributions.Single(a => a.ID == c_id).Status = "Selected";
-            db.SaveChanges();
-
-
-            return RedirectToAction("LoadData");
-        }
-
-        // GET: MarketingCoordinators/Details/5
+        // GET: Faculty1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -87,7 +37,7 @@ namespace UMCS.Controllers
             return View(faculty1);
         }
 
-        // GET: MarketingCoordinators/Create
+        // GET: Faculty1/Create
         public ActionResult Create()
         {
             ViewBag.FacultiesID = new SelectList(db.Faculties, "ID", "FacultyName");
@@ -95,7 +45,7 @@ namespace UMCS.Controllers
             return View();
         }
 
-        // POST: MarketingCoordinators/Create
+        // POST: Faculty1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -114,7 +64,7 @@ namespace UMCS.Controllers
             return View(faculty1);
         }
 
-        // GET: MarketingCoordinators/Edit/5
+        // GET: Faculty1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -131,7 +81,7 @@ namespace UMCS.Controllers
             return View(faculty1);
         }
 
-        // POST: MarketingCoordinators/Edit/5
+        // POST: Faculty1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -149,7 +99,7 @@ namespace UMCS.Controllers
             return View(faculty1);
         }
 
-        // GET: MarketingCoordinators/Delete/5
+        // GET: Faculty1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -164,7 +114,7 @@ namespace UMCS.Controllers
             return View(faculty1);
         }
 
-        // POST: MarketingCoordinators/Delete/5
+        // POST: Faculty1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

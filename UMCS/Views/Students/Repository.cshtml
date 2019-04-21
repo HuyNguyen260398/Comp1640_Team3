@@ -13,7 +13,31 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="courses-inner res-mg-b-30" style="width:350px; height:350px">
                         <div class="courses-title">
-                            <a href="#"><img src="@item.ArchiveLink" alt="" style="width:260px; height:180px"></a>
+                            @{
+                                var image = item.ArchiveLink;
+
+                                if (item.Type == "Document")
+                                {
+                                    switch (item.FileType)
+                                    {
+                                        case ".doc":
+                                            image = "/Avatars/doc.png";
+                                            break;
+                                        case ".docx":
+                                            image = "/Avatars/docx.png";
+                                            break;
+                                        case ".pdf":
+                                            image = "/Avatars/pdf.jpg";
+                                            break;
+                                    }
+                                    <a href="#"><img src=@image alt="" style="width:260px; height:180px"></a>
+                                }
+                                else
+                                {
+                                    <a href="#"><img src="@item.ArchiveLink" alt="" style="width:260px; height:180px"></a>
+                                }
+                            }
+
                             <h2>@item.Title</h2>
                         </div>
                         <div class="course-des">

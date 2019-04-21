@@ -25,10 +25,10 @@ namespace UMCS.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Administrator> Administrators { get; set; }
         public virtual DbSet<Contribution> Contributions { get; set; }
         public virtual DbSet<Faculty> Faculties { get; set; }
         public virtual DbSet<Faculty1> Faculties1 { get; set; }
-        public virtual DbSet<MarketingCoordinator> MarketingCoordinators { get; set; }
         public virtual DbSet<MarketingManager> MarketingManagers { get; set; }
         public virtual DbSet<Student> Students { get; set; }
     }

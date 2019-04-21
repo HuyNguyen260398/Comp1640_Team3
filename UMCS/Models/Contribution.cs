@@ -21,9 +21,9 @@ namespace UMCS.Models
         public Nullable<System.DateTime> LastUpdate { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
+        public string FileType { get; set; }
         public string ArchiveLink { get; set; }
         public string Status { get; set; }
-        public string FileType { get; set; }
     
         public virtual Student Student { get; set; }
     }

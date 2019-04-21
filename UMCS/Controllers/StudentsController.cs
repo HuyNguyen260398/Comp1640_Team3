@@ -24,21 +24,22 @@ namespace UMCS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Student student, MarketingManager MM, MarketingCoordinator MC)
+        public ActionResult Login(Student student, MarketingManager MM, Faculty1 MC)
         {
             var model = db.Students.SingleOrDefault(s => s.Username == student.Username);
             var modelMM = db.MarketingManagers.SingleOrDefault(mm => mm.Username == MM.Username);
-            var modelMC = db.MarketingCoordinators.SingleOrDefault(mc => mc.Username == MC.Username);
+            var modelF = db.Faculties1.SingleOrDefault(mc => mc.Username == MC.Username);
 
             if (model != null)
             {
                 if (model.Password == student.Password)
                 {
                     Session["S_ID"] = model.ID;
-                    Session["Username"] = model.Username;
-                    Session["Img"] = model.Image.ToString();
                     Session["MM_ID"] = null;
                     Session["MC_ID"] = null;
+                    Session["F_ID"] = null;
+                    Session["Username"] = model.Username;
+                    Session["Img"] = model.Image.ToString();
                     return RedirectToAction("Repository/"+Session["S_ID"], "Students");
                 }
                 else
@@ -64,16 +65,26 @@ namespace UMCS.Controllers
                     return View();
                 }
             }
-            else if (modelMC != null)
+            else if (modelF != null)
             {
-                if (modelMC.Password == MC.Password)
+                if (modelF.Password == MC.Password && modelF.Role == "Marketing Coordinator")
                 {
-                    Session["MC_ID"] = modelMC.ID;
+                    Session["MC_ID"] = modelF.ID;
                     Session["S_ID"] = null;
                     Session["MM_ID"] = null;
-                    Session["Username"] = modelMC.Username;
-                    Session["Img"] = modelMC.Image.ToString();
+                    Session["F_ID"] = null;
+                    Session["Username"] = modelF.Username;
+                    Session["Img"] = modelF.Image.ToString();
                     return RedirectToAction("LoadData", "MarketingCoordinators");
+                }
+                else if (modelF.Password == MC.Password && modelF.Role == "Faculty") {
+                    Session["F_ID"] = modelF.ID;
+                    Session["MC_ID"] = null;
+                    Session["S_ID"] = null;
+                    Session["MM_ID"] = null;
+                    Session["Username"] = modelF.Username;
+                    Session["Img"] = modelF.Image.ToString();
+                    return RedirectToAction("", "");
                 }
                 else
                 {
@@ -93,6 +104,7 @@ namespace UMCS.Controllers
             Session["S_ID"] = null;
             Session["MM_ID"] = null;
             Session["MC_ID"] = null;
+            Session["F_ID"] = null;
             Session["Username"] = null;
             Session["Img"] = null;
             return RedirectToAction("Login");
@@ -115,7 +127,8 @@ namespace UMCS.Controllers
 
             var s_id = Convert.ToInt32(Session["S_ID"]);
             var student = db.Students.SingleOrDefault(s => s.ID == s_id);
-            var marketing_coordinator = db.MarketingCoordinators.SingleOrDefault(a => a.FacultyID == student.FacultiesID);
+            var marketing_coordinator = db.Faculties1.Where(a => a.FacultiesID == student.FacultiesID && a.Role == "Marketing Coordinator")
+                .SingleOrDefault();
             
             if (file != null && file.ContentLength > 0)
             {
