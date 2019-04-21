@@ -1,0 +1,12 @@
+﻿.courses-area .container-fluid {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.courses-area .container-fluid .row {
+    background-color: #ffffff;
+}
+
+.courses-title {
+    height: 230px;
+}

@@ -5,13 +5,13 @@
     Layout = "~/Views/Layout/_Main.cshtml";
 }
 
-<div class="courses-area" style="margin-bottom:20px">
+<div class="courses-area" style="margin: 20px auto">
     <div class="container-fluid">
         <div class="row">
             @foreach (var item in Model)
             {
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="courses-inner res-mg-b-30" style="width:350px; height:350px">
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="courses-inner res-mg-b-30" style="width:250px; height:380px">
                         <div class="courses-title">
                             @{
                                 var image = item.ArchiveLink;
@@ -30,7 +30,9 @@
                                             image = "/Avatars/pdf.jpg";
                                             break;
                                     }
-                                    <a href="#"><img src=@image alt="" style="width:260px; height:180px"></a>
+                                    <a href="#">
+                                        <img src=@image alt="" style="width:180px; height:180px; padding-left:10px">
+                                    </a>
                                 }
                                 else
                                 {
