@@ -57,7 +57,7 @@ namespace UMCS.Controllers
 
         public ActionResult LoadData()
         {
-            var files = db.Contributions.Where(f => f.Status == "Pending").ToList();
+            var files = db.Contributions.ToList();
             return View(files);
         }
 
