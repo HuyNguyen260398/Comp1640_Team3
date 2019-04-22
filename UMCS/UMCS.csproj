@@ -449,6 +449,9 @@
     <Compile Include="Models\Administrator.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClosureDate.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Contribution.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>

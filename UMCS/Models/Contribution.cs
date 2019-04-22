@@ -24,6 +24,8 @@ namespace UMCS.Models
         public string FileType { get; set; }
         public string ArchiveLink { get; set; }
         public string Status { get; set; }
+        public Nullable<System.DateTime> UploadDate { get; set; }
+        public Nullable<System.DateTime> CommentDate { get; set; }
     
         public virtual Student Student { get; set; }
     }
