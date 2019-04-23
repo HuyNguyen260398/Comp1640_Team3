@@ -129,12 +129,22 @@ namespace UMCS.Controllers
             Session["Admin_Username"] = null;
             Session["Username"] = null;
             Session["Img"] = null;
+            Session["Admin_Username"] = null;
             return RedirectToAction("Login");
         }
 
         [HttpGet]
         public ActionResult Upload()
         {
+            var currentYear = DateTime.Now.Year;
+            var currentDate = DateTime.Now.Date;
+            var closureDate = db.ClosureDates.SingleOrDefault(c => c.AcademicYear == currentYear).ClosureDate1;
+
+            if (currentDate > closureDate)
+            {
+                ViewBag.Deadline = "Closure date is passed! New contributions are disabled!";
+            }
+
             return View();
         }
 
@@ -143,14 +153,13 @@ namespace UMCS.Controllers
         {
             if (option == null)
             {
-                ViewBag.Message = "You are not angree with the Term of Service!";
+                ViewBag.Error = "You are not angree with the Term of Service!";
                 return View();
             }
 
             var s_id = Convert.ToInt32(Session["S_ID"]);
             var student = db.Students.SingleOrDefault(s => s.ID == s_id);
-            var marketing_coordinator = db.Faculties1.Where(a => a.FacultiesID == student.FacultiesID && a.Role == "Marketing Coordinator")
-                .SingleOrDefault();
+            var marketing_coordinator = db.Faculties1.Where(a => a.FacultiesID == student.FacultiesID && a.Role == "Marketing Coordinator").SingleOrDefault();
             
             if (file != null && file.ContentLength > 0)
             {
@@ -161,7 +170,7 @@ namespace UMCS.Controllers
 
                     if (!allowedExtensions.Contains(checkExtension))
                     {
-                        ViewBag.Message = "Invalid file type!";
+                        ViewBag.Error = "Invalid file type!";
                         return View();
                     }
 
@@ -183,8 +192,9 @@ namespace UMCS.Controllers
                     Contribution contribution = new Contribution
                     {
                         StudentID = s_id,
-                        Title = Path.GetFileNameWithoutExtension(file.FileName),
+                        Title = filename,
                         DateSubmit = DateTime.Now,
+                        LastUpdate = DateTime.Now,
                         Type = type,
                         FileType = checkExtension,
                         ArchiveLink = "/Files/" + filename,
@@ -199,28 +209,24 @@ namespace UMCS.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.Message = "Error: " + ex.Message.ToString();
+                    ViewBag.Error = "Error: " + ex.Message.ToString();
                 }
             }
             else
             {
-                ViewBag.Message = "You have not specified a file!";
+                ViewBag.Error = "You have not specified a file!";
             }
 
-            return RedirectToAction("Repository/" + Session["S_ID"], "Students");
+            return View();
+        }
+
+        public FileResult Download(string fileName)
+        {
+            var FileVirtualPath = "~/Files/" + fileName;
+            return File(FileVirtualPath, "application/force- download", Path.GetFileName(FileVirtualPath));
         }
 
         public ActionResult Repository(string id)
-        {
-            int s_id = Convert.ToInt32(id);
-            var files = db.Contributions.Where(f => f.StudentID == s_id).ToList();
-            return View(files);
-        }
-
-        
-
-        [HttpGet]
-        public ActionResult Repositories(string id)
         {
             int s_id = Convert.ToInt32(id);
             var files = db.Contributions.Where(f => f.StudentID == s_id).ToList();
