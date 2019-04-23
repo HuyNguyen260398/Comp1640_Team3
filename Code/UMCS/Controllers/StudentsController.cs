@@ -57,6 +57,7 @@ namespace UMCS.Controllers
                     Session["S_ID"] = null;
                     Session["MC_ID"] = null;
                     Session["Username"] = modelMM.Username;
+                    Session["Admin_Username"] = null;
                     Session["Img"] = modelMM.Image.ToString();
                     return RedirectToAction("Index", "Home");
                 }
@@ -75,6 +76,7 @@ namespace UMCS.Controllers
                     Session["MM_ID"] = null;
                     Session["F_ID"] = null;
                     Session["Username"] = modelF.Username;
+                    Session["Admin_Username"] = null;
                     Session["Img"] = modelF.Image.ToString();
                     return RedirectToAction("LoadData", "MarketingCoordinators");
                 }
@@ -84,6 +86,7 @@ namespace UMCS.Controllers
                     Session["S_ID"] = null;
                     Session["MM_ID"] = null;
                     Session["Username"] = modelF.Username;
+                    Session["Admin_Username"] = null;
                     Session["Img"] = modelF.Image.ToString();
                     return RedirectToAction("", "");
                 }
@@ -98,6 +101,10 @@ namespace UMCS.Controllers
                 if (modelAdmin.Password == admin.Password)
                 {
                     Session["Admin_Username"] = modelAdmin.Username;
+                    Session["F_ID"] = null;
+                    Session["MC_ID"] = null;
+                    Session["S_ID"] = null;
+                    Session["MM_ID"] = null;
                     return RedirectToAction("Index", "Admin");
                 }
                 else
@@ -119,6 +126,7 @@ namespace UMCS.Controllers
             Session["MM_ID"] = null;
             Session["MC_ID"] = null;
             Session["F_ID"] = null;
+            Session["Admin_Username"] = null;
             Session["Username"] = null;
             Session["Img"] = null;
             return RedirectToAction("Login");
