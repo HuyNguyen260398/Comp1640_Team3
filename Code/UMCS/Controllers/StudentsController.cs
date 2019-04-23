@@ -24,11 +24,12 @@ namespace UMCS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Student student, MarketingManager MM, Faculty1 MC)
+        public ActionResult Login(Student student, MarketingManager MM, Faculty1 MC, Administrator admin)
         {
             var model = db.Students.SingleOrDefault(s => s.Username == student.Username);
             var modelMM = db.MarketingManagers.SingleOrDefault(mm => mm.Username == MM.Username);
             var modelF = db.Faculties1.SingleOrDefault(mc => mc.Username == MC.Username);
+            var modelAdmin = db.Administrators.SingleOrDefault(a => a.Username == admin.Username);
 
             if (model != null)
             {
@@ -85,6 +86,19 @@ namespace UMCS.Controllers
                     Session["Username"] = modelF.Username;
                     Session["Img"] = modelF.Image.ToString();
                     return RedirectToAction("", "");
+                }
+                else
+                {
+                    ViewBag.Error = "Invalid Username or Password!";
+                    return View();
+                }
+            }
+            else if (modelAdmin != null)
+            {
+                if (modelAdmin.Password == admin.Password)
+                {
+                    Session["Admin_Username"] = modelAdmin.Username;
+                    return RedirectToAction("Index", "Admin");
                 }
                 else
                 {
