@@ -1,0 +1,87 @@
+﻿@model IList<UMCS.Models.Contribution>
+
+@{
+    ViewBag.Title = "ContributionsList";
+    Layout = "~/Views/Layout/MM.cshtml";
+
+    int i = 0;
+}
+
+
+<div class="product-status mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-status-wrap">
+                    <h4>Students' Contributions List</h4>
+                    <div class="add-product">
+                        <a href="#">Download All</a>
+                    </div>
+                    <div class="asset-inner">
+                        <table>
+                            <tr>
+                                <th>No</th>
+                                <th>Type</th>
+                                <th>File Name</th>
+                                <th>Status</th>
+                                <th>Date Submit</th>
+                                <th>Last Update</th>
+                                <th>Setting</th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                i += 1;
+                                <tr>
+                                    <td>@i</td>
+                                    @{
+                                        var image = item.ArchiveLink;
+
+                                        if (item.Type == "Document")
+                                        {
+                                            switch (item.FileType)
+                                            {
+                                                case ".doc":
+                                                    image = "/Avatars/doc.png";
+                                                    break;
+                                                case ".docx":
+                                                    image = "/Avatars/docx.png";
+                                                    break;
+                                                case ".pdf":
+                                                    image = "/Avatars/pdf.jpg";
+                                                    break;
+                                            }
+                                            <td><img src=@image alt="" /></td>
+                                        }
+                                        else
+                                        {
+                                            <td><img src="@item.ArchiveLink" alt="" /></td>
+                                        }
+                                    }
+                                    <td>@item.Title</td>
+                                    <td>
+                                        @switch (item.Status)
+                                        {
+                                            case "Selected":
+                                                <button class="pd-setting">Selected</button>
+                                                break;
+                                            case "Commented":
+                                                <button class="ps-setting">Commented</button>
+                                                break;
+                                        }
+                                    </td>
+                                    <td>@item.DateSubmit</td>
+                                    <td>@item.LastUpdate</td>
+                                    <td>
+                                        <button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        <button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

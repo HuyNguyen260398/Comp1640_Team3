@@ -537,6 +537,8 @@
     <Content Include="Views\MarketingCoordinators\Edit.cshtml" />
     <Content Include="Views\MarketingCoordinators\_LoginEmail.cshtml" />
     <Content Include="Views\MarketingManagers\Index.cshtml" />
+    <Content Include="Views\MarketingManagers\FacultiesList.cshtml" />
+    <Content Include="Views\MarketingManagers\ContributionsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

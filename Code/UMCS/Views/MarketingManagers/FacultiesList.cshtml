@@ -1,0 +1,47 @@
+﻿@model IList<UMCS.Models.Faculty>
+@using UMCS.Models
+
+@{
+    ViewBag.Title = "FacultiesList";
+    Layout = "~/Views/Layout/MM.cshtml";
+
+    UMCSEntities db = new UMCSEntities();
+}
+
+<div class="courses-area">
+    <div class="container-fluid">
+
+        <div class="row mg-b-15">
+            @foreach (var item in Model)
+            {
+                var role = db.Faculties1.Where(m => m.Role == "Marketing Coordinator");
+                var MC = role.SingleOrDefault(r => r.FacultiesID == item.ID);
+                var teacherCount = db.Faculties1.Where(t => t.FacultiesID == item.ID).Count();
+                var studentCount = db.Students.Where(s => s.FacultiesID == item.ID).Count();
+                var contriCount = db.Contributions.Where(c => c.Student.FacultiesID == item.ID).Count();
+
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="courses-inner mg-t-30">
+                        <div class="courses-title">
+                            <a href="#"><img src="~/Template/kiaalap-master/img/courses/1.jpg" alt=""></a>
+                            <h2>@item.FacultyName</h2>
+                        </div>
+                        <div class="courses-alaltic">
+                            <span class="cr-ic-r"><span class="course-icon"><i class="educate-icon educate-professor"></i></span> @teacherCount</span>
+                            <span class="cr-ic-r"><span class="course-icon"><i class="educate-icon educate-student"></i></span> @studentCount</span>
+                        </div>
+                        <div class="course-des">
+                            <p><span><i class="fa fa-clock"></i></span> <b>Marketing Coordinator:</b> @(MC.LastName + " " + MC.FirstName)</p>
+                            <p><span><i class="fa fa-clock"></i></span> <b>Contributions:</b> @contriCount</p>
+                        </div>
+                        <div class="product-buttons">
+                            <a href="@Url.Action("ContributionsList", "MarketingManagers" , new {id = item.ID })" class="btn" style="background-color:#006DF0; color:white">View Contributions</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
