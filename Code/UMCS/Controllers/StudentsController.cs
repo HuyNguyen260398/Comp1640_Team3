@@ -59,7 +59,7 @@ namespace UMCS.Controllers
                     Session["Username"] = modelMM.Username;
                     Session["Admin_Username"] = null;
                     Session["Img"] = modelMM.Image.ToString();
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "MarketingManagers");
                 }
                 else
                 {
