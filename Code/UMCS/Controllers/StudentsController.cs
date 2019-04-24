@@ -219,13 +219,13 @@ namespace UMCS.Controllers
 
         
 
-        [HttpGet]
-        public ActionResult Repositories(string id)
-        {
-            int s_id = Convert.ToInt32(id);
-            var files = db.Contributions.Where(f => f.StudentID == s_id).ToList();
-            return View(files);
-        }
+        //[HttpGet]
+        //public ActionResult Repositories(string id)
+        //{
+        //    int s_id = Convert.ToInt32(id);
+        //    var files = db.Contributions.Where(f => f.StudentID == s_id).ToList();
+        //    return View(files);
+        //}
 
         [NonAction]
         public void SendEmail(string mc_email, int student_id)
@@ -252,7 +252,6 @@ namespace UMCS.Controllers
             {
                 Subject = subject,
                 Body = body,
-                IsBodyHtml = true,
             })
                 smtp.Send(message);
         }

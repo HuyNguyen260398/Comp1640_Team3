@@ -29,13 +29,12 @@
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="DateSubmit" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="CommentDate" Type="datetime" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="Type" Type="nvarchar" MaxLength="10" />
           <Property Name="FileType" Type="nvarchar" MaxLength="10" />
           <Property Name="ArchiveLink" Type="varchar" MaxLength="100" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
-          <Property Name="UploadDate" Type="date" />
-          <Property Name="CommentDate" Type="date" />
         </EntityType>
         <EntityType Name="Faculties">
           <Key>
@@ -59,6 +58,7 @@
           <Property Name="Image" Type="varchar" MaxLength="100" />
           <Property Name="Phone" Type="varchar" MaxLength="20" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailPW" Type="varchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="Username" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="50" />
@@ -198,13 +198,12 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DateSubmit" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="CommentDate" Type="DateTime" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="FileType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ArchiveLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UploadDate" Type="DateTime" Precision="0" />
-          <Property Name="CommentDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Student" Relationship="Self.FK__Contribut__Stude__45F365D3" FromRole="Contributions" ToRole="Students" />
         </EntityType>
         <EntityType Name="Faculty">
@@ -231,6 +230,7 @@
           <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailPW" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -377,13 +377,12 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="DateSubmit" ColumnName="DateSubmit" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="FileType" ColumnName="FileType" />
                 <ScalarProperty Name="ArchiveLink" ColumnName="ArchiveLink" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
-                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -409,6 +408,7 @@
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailPW" ColumnName="EmailPW" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

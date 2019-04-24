@@ -1,0 +1,23 @@
+﻿.badge {
+    background-color:none;
+}
+
+.bg-warning {
+    background-color: #f0ad4e;
+}
+
+.bg-primary {
+    background-color: #337ab7;
+}
+
+.bg-success {
+    background-color: #5cb85c;
+}
+
+.bg-info {
+    background-color: #5bc0de;
+}
+
+.bg-danger {
+    background-color: #d9534f;
+}
