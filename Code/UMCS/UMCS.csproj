@@ -19,8 +19,10 @@
     <Use64BitIISExpress />
     <IISExpressSSLPort>
     </IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -534,6 +536,7 @@
     <Content Include="Views\Layout\ADMIN.cshtml" />
     <Content Include="Views\MarketingCoordinators\Edit.cshtml" />
     <Content Include="Views\MarketingCoordinators\_LoginEmail.cshtml" />
+    <Content Include="Views\MarketingManagers\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -545,7 +548,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Avatars\" />
     <Folder Include="Files\" />
-    <Folder Include="Views\MarketingManagers\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
