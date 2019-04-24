@@ -10,8 +10,8 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="courses-inner res-mg-b-30" style="width:250px; height:380px">
+                <div class="col-sm-6 col-md-4 col-lg-3" style="height:400px">
+                    <div class="courses-inner res-mg-b-30" style="width:300px; height:380px">
                         <div class="courses-title">
                             @{
                                 var image = item.ArchiveLink;
@@ -40,15 +40,15 @@
                                 }
                             }
 
-                            <h2>@item.Title</h2>
+                            <h2>@item.Type</h2>
                         </div>
                         <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Type:</b> @item.Type</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>File Type:</b> @item.FileType</p>
+                            <p><span><i class="fa fa-clock"></i></span> <b>Date Submit:</b> @item.DateSubmit</p>
+                            <p><span><i class="fa fa-clock"></i></span> <b>Last Update:</b> @item.LastUpdate</p>
                             <p><span><i class="fa fa-clock"></i></span> <b>Status:</b> @item.Status</p>
                         </div>
                         <div class="product-buttons">
-                            <button type="button" class="button-default cart-btn">View File</button>
+                            <a href="@Url.Action("Download", "Students", new { FileName = item.Title })" class="btn btn-primary">Download</a>
                         </div>
                     </div>
                 </div>
