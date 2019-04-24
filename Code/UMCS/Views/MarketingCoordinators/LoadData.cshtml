@@ -1,6 +1,7 @@
 ﻿@model List<UMCS.Models.Contribution>
 @{
     ViewBag.Title = "Accept";
+    List<String> status = new List<string> { "Commented", "Selected", "Unselected" };
     Layout = "~/Views/Layout/MC.cshtml";
 }
 
@@ -44,9 +45,85 @@
                                         <td>@item.Type</td>
                                         <td>@item.FileType</td>
                                         <td>
-                                            @item.Status
+                                            @{
+                                                switch (item.Status)
+                                                {
+                                                    case "Pending":
+                                                        <div class="badge bg-warning">
+                                                            @item.Status
+                                                        </div>
+                                                        break;
+                                                    case "Commented":
+                                                        <div class="badge bg-info">
+                                                            @item.Status
+                                                        </div>
+                                                        break;
+                                                    case "Selected":
+                                                        <div class="badge bg-success">
+                                                            @item.Status
+                                                        </div>
+                                                        break;
+                                                    case "Unselected":
+                                                        <div class="badge bg-danger">
+                                                            @item.Status
+                                                        </div>
+                                                        break;
+                                                }
+                                            }
                                         </td>
-                                        <td>@Html.ActionLink("Accept", "Bt_Accept", "MarketingCoordinators", new { id = item.ID }, new { @class = "btn btn-success" })</td>
+                                        <td>
+                                            @{
+                                                if (item.Status == "Pending")
+                                                {
+                                                    <a href="javascript:void(0);" class="LoginEmail btn btn-info" data-id="@item.ID">
+                                                        <i class="far fa-comment"></i>
+                                                        <span>Comment</span>
+                                                    </a>
+                                                    @*@Html.ActionLink("Comment", "SendEmail", "MarketingCoordinators",
+                new { id = item.ID }, new { @class = "btn btn-info" });*@
+                                                }
+                                                else
+                                                {
+                                                    if (Session["ChangeStatus"] == null)
+                                                    {
+                                                        <a href="@Url.Action("ChageStatus", "MarketingCoordinators", new { id = item.ID})"
+                                                           class="btn btn-warning">
+                                                            <i class="fas fa-edit"></i>
+                                                            <span>Change</span>
+                                                        </a>
+                                                    }
+                                                    else if (Session["ChangeStatus"] != null && 
+                                                        item.ID == int.Parse(Session["ChangeStatus"].ToString()))
+                                                    {
+                                                        <form action="@Url.Action("UpdateStatus")" method="get">
+                                                            <input type="hidden" name="id" value="@item.ID" />
+                                                            <select id="status" name="status">
+                                                                @foreach (var s in status)
+                                                                {
+                                                                    if (s == item.Status)
+                                                                    {
+                                                                        <option value="@s" selected="selected">@s</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@s">@s</option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                            <input type="submit" value="Done" class="btn btn-warning" />
+                                                        </form>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="@Url.Action("ChageStatus", "MarketingCoordinators", new { id = item.ID})"
+                                                            class="btn btn-warning">
+                                                            <i class="fas fa-edit"></i>
+                                                            <span>Change</span>
+                                                        </a>
+                                                    }
+                                                }
+                                            }
+                                        </td>
                                     </tr>
                                 }
 
@@ -59,3 +136,11 @@
     </div>
 </div>
 
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'>
+            </div>
+        </div>
+    </div>
+</div>

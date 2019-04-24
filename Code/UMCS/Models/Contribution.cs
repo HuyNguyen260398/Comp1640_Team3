@@ -19,13 +19,12 @@ namespace UMCS.Models
         public string Title { get; set; }
         public Nullable<System.DateTime> DateSubmit { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
+        public Nullable<System.DateTime> CommentDate { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
         public string FileType { get; set; }
         public string ArchiveLink { get; set; }
         public string Status { get; set; }
-        public Nullable<System.DateTime> UploadDate { get; set; }
-        public Nullable<System.DateTime> CommentDate { get; set; }
     
         public virtual Student Student { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿
+﻿@model UMCS.Models.Contribution
 @{
     ViewBag.Title = "SendEmail";
     Layout = "~/Views/Layout/MC.cshtml";
@@ -63,6 +63,17 @@
                 <div class="hpanel email-compose">
                     @using (Html.BeginForm("SendEmail", "MarketingCoordinators", FormMethod.Post))
                     {
+                        @Html.HiddenFor(model => model.ID)
+                        @Html.HiddenFor(model => model.StudentID)
+                        @Html.HiddenFor(model => model.Title)
+                        @Html.HiddenFor(model => model.DateSubmit)
+                        @Html.HiddenFor(model => model.LastUpdate)
+                        @Html.HiddenFor(model => model.CommentDate)
+                        @Html.HiddenFor(model => model.Description)
+                        @Html.HiddenFor(model => model.Type)
+                        @Html.HiddenFor(model => model.FileType)
+                        @Html.HiddenFor(model => model.ArchiveLink)
+
                         <div class="panel-heading hbuilt">
                             <div class="p-xs h4">
                                 New message
@@ -74,23 +85,24 @@
                                     <label class="col-lg-1 control-label text-left">To:</label>
                                     <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12">
                                         @*<input name="email" type="text" class="form-control input-sm" placeholder="example@email.com">*@
-                                        @Html.TextBox("s_email", "", new { @name = "email", @class = "form-control input-sm", @placeholder = "example@email.com" })
+                                        @Html.TextBox("s_email", Model.Student.Email, new { @class = "form-control input-sm", @placeholder = "example@email.com",
+                                                                                    @readonly = "readonly" })
                                     </div>
                                 </div>
                                 <br />
-                                <div class="form-group">
-                                    <label class="col-lg-1 control-label text-left" style="margin-top:20px">Cc:</label>
-                                    <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px">
-                                        @*<input id="recipient_email" type="text" class="form-control input-sm">*@
-                                        @Html.TextBox("cc", "", new { @id = "recipient_email", @class = "form-control input-sm" })
-                                    </div>
-                                </div>
-                                <br />
+                                @*<div class="form-group">
+                        <label class="col-lg-1 control-label text-left" style="margin-top:20px">Cc:</label>
+                        <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px">
+                            <input id="recipient_email" type="text" class="form-control input-sm">
+                            @Html.TextBox("cc", "", new { @id = "recipient_email", @class = "form-control input-sm" })
+                        </div>
+                    </div>
+                    <br />*@
                                 <div class="form-group">
                                     <label class="col-lg-1 control-label text-left" style="margin-top:20px">Subject:</label>
                                     <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px">
                                         @*<input type="text" class="form-control input-sm" placeholder="Subject">*@
-                                        @Html.TextBox("subject", "", new { @class = "form-control input-sm", @placeholder = "Subject" })
+                                        @Html.TextBox("subject", "[Contribution Comment] [Title] " + Model.Title, new { @class = "form-control input-sm", @placeholder = "Subject" })
                                     </div>
                                 </div>
                                 <br />
@@ -98,7 +110,7 @@
                                     <label class="col-lg-1 control-label text-left" style="margin-top:20px">Message:</label>
                                     <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px">
                                         @*<input type="text" class="form-control input-sm" placeholder="Subject">*@
-                                        @Html.TextArea("body", "", new { @class = "form-control", @style="width:100%;height:250px" })
+                                        @Html.TextArea("body", "", new { @class = "form-control", @style = "width:100%;height:250px" })
                                     </div>
                                 </div>
                                 <br />

@@ -15,25 +15,31 @@ namespace UMCS.Controllers
     {
         private UMCSEntities db = new UMCSEntities();
 
-        public ActionResult Accept()
+        [HttpGet]
+        public ActionResult LoginEmail(int id)
         {
-            return View();
+            ViewBag.ContributionId = id;
+            Faculty1 faculty = db.Faculties1.Find(Convert.ToInt32(Session["MC_ID"]));
+            return PartialView("../MarketingCoordinators/_LoginEmail", faculty);
         }
 
         [HttpGet]
-        public ActionResult SendEmail()
+        public ActionResult SendEmail(int id)
         {
-            return View();
+            Contribution contribution = db.Contributions.Find(id);
+            return View(contribution);
         }
 
         [HttpPost]
-        public ActionResult SendEmail(string s_email, string cc, string subject, string body)
+        public ActionResult SendEmail(Contribution contribution, string s_email, string subject, string body)
         {
-            //var student = db.Students.SingleOrDefault(s => s.ID == student_id);
+            var faculty  = db.Faculties1.Find(Convert.ToInt32(Session["MC_ID"]));
 
-            var fromEmail = new MailAddress("umcsystem@gmail.com");
+            //var fromEmail = new MailAddress(faculty.Email);
+            var fromEmail = new MailAddress(faculty.Email);
             var toEmail = new MailAddress(s_email);
-            var fromEmailPassword = "Comp1640";
+            var fromEmailPassword = faculty.EmailPW;
+            //var fromEmailPassword = faculty.EmailPW;
 
             var smtp = new SmtpClient
             {
@@ -49,10 +55,20 @@ namespace UMCS.Controllers
             {
                 Subject = subject,
                 Body = body,
-                IsBodyHtml = true,
             })
-                smtp.Send(message);
-            return View();
+                try
+                {
+                    smtp.Send(message);
+                    contribution.Status = "Commented";
+                    db.Entry(contribution).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            return RedirectToAction("LoadData");
         }
 
         public ActionResult LoadData()
@@ -61,16 +77,34 @@ namespace UMCS.Controllers
             return View(files);
         }
 
-
-        public ActionResult Bt_Accept(string id)
+        public ActionResult ChageStatus(int id)
         {
-            int c_id = Convert.ToInt32(id);
-            db.Contributions.Single(a => a.ID == c_id).Status = "Selected";
-            db.SaveChanges();
-
-
+            Session["ChangeStatus"] = id;
             return RedirectToAction("LoadData");
         }
+
+        public ActionResult UpdateStatus(int id, string status)
+        {
+            Contribution contribution = db.Contributions.FirstOrDefault(m => m.ID == id);
+            if (contribution != null)
+            {
+                Session["ChangeStatus"] = null;
+                contribution.Status = status;
+                db.Entry(contribution).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return RedirectToAction("LoadData");
+        }
+
+        //public ActionResult Bt_Accept(string id)
+        //{
+        //    int c_id = Convert.ToInt32(id);
+        //    db.Contributions.Single(a => a.ID == c_id).Status = "Selected";
+        //    db.SaveChanges();
+
+
+        //    return RedirectToAction("LoadData");
+        //}
 
         // GET: MarketingCoordinators/Details/5
         public ActionResult Details(int? id)

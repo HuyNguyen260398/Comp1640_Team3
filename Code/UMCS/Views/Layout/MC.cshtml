@@ -20,6 +20,7 @@
         <!-- Bootstrap CSS
         ============================================ -->
         <link rel="stylesheet" href="~/Template/kiaalap-master/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <!-- owl.carousel CSS
         ============================================ -->
         <link rel="stylesheet" href="~/Template/kiaalap-master/css/owl.carousel.css">
@@ -63,6 +64,7 @@
         <!-- style CSS
         ============================================ -->
         <link rel="stylesheet" href="~/Template/kiaalap-master/style.css">
+        <link href="~/Asset/Button.css" rel="stylesheet" />
         <!-- responsive CSS
         ============================================ -->
         <link rel="stylesheet" href="~/Template/kiaalap-master/css/responsive.css">
@@ -113,8 +115,10 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="has-arrow" href="@Url.Action("SendEmail","MarketingCoordinators")" aria-expanded="false"><span class="educate-icon educate-message icon-wrap"></span> <span class="mini-click-non">Compose</span></a>
-
+                                    <a class="has-arrow" href="@Url.Action("SendEmail","MarketingCoordinators")" aria-expanded="false">
+                                        <span class="educate-icon educate-message icon-wrap"></span>
+                                        <span class="mini-click-non">Compose</span>
+                                    </a>
                                 </li>
                             }
                             @if (Session["S_ID"] != null)
@@ -437,6 +441,34 @@
 
     </body>
 </html>
+
+<script>
+    $(function () {
+        $(".LoginEmail").click(function () {
+            debugger;
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: '/MarketingCoordinators/LoginEmail',
+                contentType: "application/json; charset=utf-8",
+                data: { "id": id },
+                datatype: "json",
+                success: function (data) {
+                    debugger;
+                    $('#myModalContent').html(data);
+                    $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+
+                },
+                error: function () {
+                    alert("Dynamic content load failed.");
+                }
+            });
+        });
+    });
+</script>
 }
 else
 {
@@ -448,4 +480,5 @@ else
     @RenderBody()
 
 </body>
-</html>     }
+</html>
+}
