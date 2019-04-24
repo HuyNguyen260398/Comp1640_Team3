@@ -232,6 +232,7 @@ namespace UMCS.Controllers
             var files = db.Contributions.Where(f => f.StudentID == s_id).ToList();
             return View(files);
         }
+        
 
         [NonAction]
         public void SendEmail(string mc_email, int student_id)

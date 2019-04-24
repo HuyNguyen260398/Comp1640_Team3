@@ -7,52 +7,170 @@
 
 <div class="courses-area" style="margin: 20px auto">
     <div class="container-fluid">
+
         <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-sm-6 col-md-4 col-lg-3" style="height:400px">
-                    <div class="courses-inner res-mg-b-30" style="width:300px; height:380px">
-                        <div class="courses-title">
-                            @{
-                                var image = item.ArchiveLink;
+            <div class="admintab-wrap edu-tab1 mg-t-30">
+                <ul class="nav nav-tabs custom-menu-wrap custon-tab-menu-style1">
+                    <li class="active">
+                        <a data-toggle="tab" href="#TabProject"><span class="edu-icon edu-analytics tab-custon-ic"></span>View All</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#TabDetails"><span class="edu-icon edu-analytics-arrow tab-custon-ic"></span>Document</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#TabPlan"><span class="edu-icon edu-analytics-bridge tab-custon-ic"></span>Image</a>
+                    </li>
+                </ul>
+               
+                <div class="tab-content">
+                    <div id="TabProject" class="tab-pane in active animated flipInX custon-tab-style1">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-sm-6 col-md-4 col-lg-3" style="height:400px">
+                                <div class="courses-inner res-mg-b-30" style="width:300px; height:380px">
+                                    <div class="courses-title">
+                                        @{
+                                            var image = item.ArchiveLink;
 
-                                if (item.Type == "Document")
-                                {
-                                    switch (item.FileType)
-                                    {
-                                        case ".doc":
-                                            image = "/Avatars/doc.png";
-                                            break;
-                                        case ".docx":
-                                            image = "/Avatars/docx.png";
-                                            break;
-                                        case ".pdf":
-                                            image = "/Avatars/pdf.jpg";
-                                            break;
-                                    }
-                                    <a href="#">
-                                        <img src=@image alt="" style="width:180px; height:180px; padding-left:10px">
-                                    </a>
-                                }
-                                else
-                                {
-                                    <a href="#"><img src="@item.ArchiveLink" alt="" style="width:260px; height:180px"></a>
-                                }
-                            }
 
-                            <h2>@item.Type</h2>
-                        </div>
-                        <div class="course-des">
-                            <p><span><i class="fa fa-clock"></i></span> <b>Date Submit:</b> @item.DateSubmit</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Last Update:</b> @item.LastUpdate</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Status:</b> @item.Status</p>
-                        </div>
-                        <div class="product-buttons">
-                            <a href="@Url.Action("Download", "Students", new { FileName = item.Title })" class="btn btn-primary">Download</a>
-                        </div>
+                                            if (item.Type == "Document")
+                                            {
+                                                switch (item.FileType)
+                                                {
+                                                    case ".doc":
+                                                        image = "/Avatars/doc.png";
+                                                        break;
+                                                    case ".docx":
+                                                        image = "/Avatars/docx.png";
+                                                        break;
+                                                    case ".pdf":
+                                                        image = "/Avatars/pdf.jpg";
+                                                        break;
+                                                }
+                                                <a href="#">
+                                                    <img src=@image alt="" style="width:180px; height:180px; padding-left:10px">
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#"><img src="@item.ArchiveLink" alt="" style="width:260px; height:180px"></a>
+                                            }
+                                        }
+
+                                        <h2>@item.Title</h2>
+                                    </div>
+                                    <div class="course-des">
+                                        <p><span><i class="fa fa-clock"></i></span> <b>Date Submit:</b> @item.DateSubmit</p>
+                                        <p><span><i class="fa fa-clock"></i></span> <b>Last Update:</b> @item.LastUpdate</p>
+                                        <p><span><i class="fa fa-clock"></i></span> <b>Status:</b> @item.Status</p>
+                                    </div>
+                                    <div class="product-buttons">
+                                        <a href="@Url.Action("Download", "Students", new { FileName = item.Title })" class="btn btn-primary">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div id="TabDetails" class="tab-pane animated flipInX custon-tab-style1">
+                        
+                        @foreach (var item in Model.Where(s => s.Type == "Document"))
+                        {
+
+                            <div class="col-sm-6 col-md-4 col-lg-3" style="height:400px">
+                                <div class="courses-inner res-mg-b-30" style="width:300px; height:380px">
+                                    <div class="courses-title">
+                                        @{
+                                            var image = item.ArchiveLink;
+
+                                            if (item.Type == "Document")
+                                            {
+                                                switch (item.FileType)
+                                                {
+                                                    case ".doc":
+                                                        image = "/Avatars/doc.png";
+                                                        break;
+                                                    case ".docx":
+                                                        image = "/Avatars/docx.png";
+                                                        break;
+                                                    case ".pdf":
+                                                        image = "/Avatars/pdf.jpg";
+                                                        break;
+                                                }
+                                                <a href="#">
+                                                    <img src=@image alt="" style="width:180px; height:180px; padding-left:10px">
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#"><img src="@item.ArchiveLink" alt="" style="width:260px; height:180px"></a>
+                                            }
+                                        }
+
+                                        <h2>@item.Title</h2>
+                                    </div>
+                                    <div class="course-des">
+                                        <p><span><i class="fa fa-clock"></i></span> <b>Date Submit:</b> @item.DateSubmit</p>
+                                        <p><span><i class="fa fa-clock"></i></span> <b>Last Update:</b> @item.LastUpdate</p>
+                                        <p><span><i class="fa fa-clock"></i></span> <b>Status:</b> @item.Status</p>
+                                    </div>
+                                    <div class="product-buttons">
+                                        <a href="@Url.Action("Download", "Students", new { FileName = item.Title })" class="btn btn-primary">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                                                }
+                    </div>
+                    <div id="TabPlan" class="tab-pane animated flipInX custon-tab-style1">
+                        @foreach (var item in Model.Where(s => s.Type == "Image"))
+                        {
+
+                            <div class="col-sm-6 col-md-4 col-lg-3" style="height:400px">
+                                <div class="courses-inner res-mg-b-30" style="width:300px; height:380px">
+                                    <div class="courses-title">
+                                        @{
+                                            var image = item.ArchiveLink;
+
+                                            if (item.Type == "Document")
+                                            {
+                                                switch (item.FileType)
+                                                {
+                                                    case ".doc":
+                                                        image = "/Avatars/doc.png";
+                                                        break;
+                                                    case ".docx":
+                                                        image = "/Avatars/docx.png";
+                                                        break;
+                                                    case ".pdf":
+                                                        image = "/Avatars/pdf.jpg";
+                                                        break;
+                                                }
+                                                <a href="#">
+                                                    <img src=@image alt="" style="width:180px; height:180px; padding-left:10px">
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#"><img src="@item.ArchiveLink" alt="" style="width:260px; height:180px"></a>
+                                            }
+                                        }
+
+                                        <h2>@item.Title</h2>
+                                    </div>
+                                    <div class="course-des">
+                                        <p><span><i class="fa fa-clock"></i></span> <b>Date Submit:</b> @item.DateSubmit</p>
+                                        <p><span><i class="fa fa-clock"></i></span> <b>Last Update:</b> @item.LastUpdate</p>
+                                        <p><span><i class="fa fa-clock"></i></span> <b>Status:</b> @item.Status</p>
+                                    </div>
+                                    <div class="product-buttons">
+                                        <a href="@Url.Action("Download", "Students", new { FileName = item.Title })" class="btn btn-primary">Download</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
-            }
+            </div>
+
         </div>
     </div>
 </div>

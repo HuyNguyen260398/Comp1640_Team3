@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Home</title>
+        <title>MC</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- favicon
@@ -80,14 +80,14 @@
         <div class="left-sidebar-pro">
             <nav id="sidebar" class="">
                 <div class="sidebar-header">
-                    <a href="index.html"><img class="main-logo" src="~/Template/kiaalap-master/img/logo/logo.png" alt="" /></a>
+                    <a href="#"><img class="main-logo" src="~/Template/kiaalap-master/img/logo/logosn.png" alt="" /></a>
                     <strong><a href="index.html"><img src="~/Template/kiaalap-master/img/logo/logosn.png" alt="" /></a></strong>
                 </div>
                 <div class="left-custom-menu-adp-wrap comment-scrollbar">
                     <nav class="sidebar-nav left-sidebar-menu-pro">
                         <ul class="metismenu" id="menu1">
                             <li>
-                                <a class="has-arrow" href="index.html">
+                                <a class="has-arrow" href="#">
                                     <span class="educate-icon educate-home icon-wrap"></span>
                                     <span class="mini-click-non">Home</span>
                                 </a>
@@ -107,12 +107,8 @@
                             @if (Session["MC_ID"] != null)
                             {
                                 <li>
-                                    <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">MC</span></a>
-                                    <ul class="submenu-angle" aria-expanded="false">
-                                        <li><a title="All Professors" href="all-professors.html"><span class="mini-sub-pro">Contribution Management</span></a></li>
-                                        <li><a title="Add Professor" href="add-professor.html"><span class="mini-sub-pro">Selected Contribution</span></a></li>
+                                    <a class="has-arrow" href="@Url.Action("LoadData","MarketingCoordinators")" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Contributions</span></a>
 
-                                    </ul>
                                 </li>
                                 <li>
                                     <a class="has-arrow" href="@Url.Action("SendEmail","MarketingCoordinators")" aria-expanded="false">
@@ -343,17 +339,7 @@
 
             @RenderBody()
 
-            <div class="footer-copyright-area">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="footer-copy-right">
-                                <p>Group 3 - COMP1640</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
         </div>
         <!-- jquery

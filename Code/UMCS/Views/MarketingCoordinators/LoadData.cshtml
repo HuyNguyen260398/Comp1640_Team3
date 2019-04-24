@@ -16,31 +16,22 @@
                 </div>
                 <div class="sparkline13-graph">
                     <div class="datatable-dashv1-list custom-datatable-overright">
-                        <div id="toolbar">
-                            <select class="form-control dt-tb">
-                                <option value="all">Export All</option>
-                                <option value="selected">Export Selected</option>
-                            </select>
-                        </div>
+
                         <table id="table" data-toggle="table" data-search="true"
                                 data-toolbar="#toolbar">
                             <thead>
                                 <tr>
-                                    <th>Student ID</th>
-                                    <th>ID</th>
                                     <th>Title</th>
                                     <th>Type</th>
                                     <th>File Type</th>
                                     <th>Status</th>
-                                    <th>
+                                    <th>#</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.StudentID</td>
-                                        <td>@item.ID</td>
                                         <td>@item.Title</td>
                                         <td>@item.Type</td>
                                         <td>@item.FileType</td>
@@ -49,22 +40,22 @@
                                                 switch (item.Status)
                                                 {
                                                     case "Pending":
-                                                        <div class="badge bg-warning">
+                                                        <div class="badge bg-warning" style="width:80px">
                                                             @item.Status
                                                         </div>
                                                         break;
                                                     case "Commented":
-                                                        <div class="badge bg-info">
+                                                        <div class="badge bg-info"style="width:80px">
                                                             @item.Status
                                                         </div>
                                                         break;
                                                     case "Selected":
-                                                        <div class="badge bg-success">
+                                                        <div class="badge bg-success"style="width:80px">
                                                             @item.Status
                                                         </div>
                                                         break;
                                                     case "Unselected":
-                                                        <div class="badge bg-danger">
+                                                        <div class="badge bg-danger"style="width:80px">
                                                             @item.Status
                                                         </div>
                                                         break;
@@ -75,7 +66,7 @@
                                             @{
                                                 if (item.Status == "Pending")
                                                 {
-                                                    <a href="javascript:void(0);" class="LoginEmail btn btn-info" data-id="@item.ID">
+                                                    <a href="javascript:void(0);" class="LoginEmail btn btn-info" data-id="@item.ID"  style="width:100px">
                                                         <i class="far fa-comment"></i>
                                                         <span>Comment</span>
                                                     </a>
@@ -87,9 +78,9 @@
                                                     if (Session["ChangeStatus"] == null)
                                                     {
                                                         <a href="@Url.Action("ChageStatus", "MarketingCoordinators", new { id = item.ID})"
-                                                           class="btn btn-warning">
+                                                           class="btn btn-warning"  style="width:100px">
                                                             <i class="fas fa-edit"></i>
-                                                            <span>Change</span>
+                                                            <span style="width:100px">Change</span>
                                                         </a>
                                                     }
                                                     else if (Session["ChangeStatus"] != null && 
