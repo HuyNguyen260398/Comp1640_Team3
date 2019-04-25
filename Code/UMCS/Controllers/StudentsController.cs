@@ -203,7 +203,8 @@ namespace UMCS.Controllers
                         Type = type,
                         FileType = checkExtension,
                         ArchiveLink = path,
-                        Status = "Pending"
+                        Status = "Pending",
+                        FID = student.FacultiesID
                     };
                     db.Contributions.Add(contribution);
                     db.SaveChanges();

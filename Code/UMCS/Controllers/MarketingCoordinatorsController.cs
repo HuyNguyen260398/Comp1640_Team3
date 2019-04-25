@@ -60,6 +60,7 @@ namespace UMCS.Controllers
                 {
                     smtp.Send(message);
                     contribution.Status = "Commented";
+                    contribution.FID = Convert.ToInt32(Session["f"]);
                     db.Entry(contribution).State = EntityState.Modified;
                     db.SaveChanges();
                 }
