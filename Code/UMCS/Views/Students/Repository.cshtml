@@ -26,50 +26,48 @@
                     <div id="TabProject" class="tab-pane in active animated flipInX custon-tab-style1">
                         @foreach (var item in Model)
                         {
-                            <div class="col-sm-6 col-md-4 col-lg-3" style="height:400px">
-                                <div class="courses-inner res-mg-b-30" style="width:250px; height:380px">
-                                    <div class="courses-title">
-                                        @{
-                                            var image = item.ArchiveLink;
-                                            var path = item.Title + item.FileType;
+                        <div class="col-sm-6 col-md-4 col-lg-3" style="height:400px">
+                            <div class="courses-inner res-mg-b-30" style="width:300px; height:380px">
+                                <div class="courses-title">
+                                    @{
+                                        var image = item.ArchiveLink;
 
-                                            if (item.Type == "Document")
+                                        if (item.Type == "Document")
+                                        {
+                                            switch (item.FileType)
                                             {
-                                                switch (item.FileType)
-                                                {
-                                                    case ".doc":
-                                                        image = "/Avatars/doc.png";
-                                                        break;
-                                                    case ".docx":
-                                                        image = "/Avatars/docx.png";
-                                                        break;
-                                                    case ".pdf":
-                                                        image = "/Avatars/pdf.jpg";
-                                                        break;
-                                                }
-                                                <a href="#">
-                                                    <img src=@image alt="" style="width:180px; height:180px; padding-left:10px">
-                                                </a>
+                                                case ".doc":
+                                                    image = "/Avatars/doc.png";
+                                                    break;
+                                                case ".docx":
+                                                    image = "/Avatars/docx.png";
+                                                    break;
+                                                case ".pdf":
+                                                    image = "/Avatars/pdf.jpg";
+                                                    break;
                                             }
-                                            else
-                                            {
-                                                image = "/Files/" + item.Title + item.FileType;
-                                                <a href="#"><img src=@image alt="" style="width:260px; height:180px"></a>
-                                            }
+                                            <a href="#">
+                                                <img src=@image alt="" style="width:180px; height:180px; padding-left:10px">
+                                            </a>
                                         }
+                                        else
+                                        {
+                                            <a href="#"><img src="@item.ArchiveLink" alt="" style="width:260px; height:180px"></a>
+                                        }
+                                    }
 
-                                        <h2>@item.Title</h2>
-                                    </div>
-                                    <div class="course-des">
-                                        <p><span><i class="fa fa-clock"></i></span> <b>Date Submit:</b> @item.DateSubmit</p>
-                                        <p><span><i class="fa fa-clock"></i></span> <b>Last Update:</b> @item.LastUpdate</p>
-                                        <p><span><i class="fa fa-clock"></i></span> <b>Status:</b> @item.Status</p>
-                                    </div>
-                                    <div class="product-buttons">
-                                        <a href="@Url.Action("Download", "Students", new { FilePath = path })" class="btn btn-primary">Download</a>
-                                    </div>
+                                    <h2>@item.Title</h2>
+                                </div>
+                                <div class="course-des">
+                                    <p><span><i class="fa fa-clock"></i></span> <b>Date Submit:</b> @item.DateSubmit</p>
+                                    <p><span><i class="fa fa-clock"></i></span> <b>Last Update:</b> @item.LastUpdate</p>
+                                    <p><span><i class="fa fa-clock"></i></span> <b>Status:</b> @item.Status</p>
+                                </div>
+                                <div class="product-buttons">
+                                    <a href="@Url.Action("Download", "Students", new { FileName = item.Title })" class="btn btn-primary">Download</a>
                                 </div>
                             </div>
+                        </div>
                         }
                     </div>
                     <div id="TabDetails" class="tab-pane animated flipInX custon-tab-style1">
