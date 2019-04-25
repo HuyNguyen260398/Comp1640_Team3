@@ -202,7 +202,6 @@ namespace UMCS.Controllers
                         LastUpdate = DateTime.Now,
                         Type = type,
                         FileType = checkExtension,
-                        //ArchiveLink = "/Files/" + filename,
                         ArchiveLink = path,
                         Status = "Pending"
                     };
