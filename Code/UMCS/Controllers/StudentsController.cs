@@ -145,12 +145,14 @@ namespace UMCS.Controllers
                 ViewBag.Deadline = "Closure date is passed! New contributions are disabled!";
             }
 
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase file, string option)
         {
+
             if (option == null)
             {
                 ViewBag.Error = "You are not angree with the Term of Service!";
@@ -217,6 +219,7 @@ namespace UMCS.Controllers
                 ViewBag.Error = "You have not specified a file!";
             }
 
+            
             return View();
         }
 
