@@ -40,12 +40,6 @@ namespace UMCS.Controllers
             int f_id = Convert.ToInt32(id);
             var contributesList = db.Contributions.Where(c => c.Student.FacultiesID == f_id);
             var selectedContributes = contributesList.Where(s => s.Status == "Selected" || s.Status == "Commented").ToList();
-
-            //List<string> filePaths = new List<string>();
-            //foreach(var item in selectedContributes)
-            //{
-            //    filePaths.Add(item.ArchiveLink);
-            //}
             
             List<FileModel> files = new List<FileModel>();
             foreach (var item in selectedContributes)
