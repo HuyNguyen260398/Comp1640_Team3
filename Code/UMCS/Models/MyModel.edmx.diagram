@@ -14,7 +14,7 @@
         <AssociationConnector Association="UMCSModel.FK__Students__Facult__31EC6D26" ManuallyRouted="false" />
         <AssociationConnector Association="UMCSModel.FK_Faculty_Faculties" ManuallyRouted="false" />
         <AssociationConnector Association="UMCSModel.FK_Faculty_MarketingManager" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="UMCSModel.Contribution" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="UMCSModel.Contribution" PointX="5.25" PointY="7.625" Width="1.5" />
         <EntityTypeShape EntityType="UMCSModel.sysdiagram" Width="1.5" PointX="5.375" PointY="4.75" />
         <AssociationConnector Association="UMCSModel.FK__Contribut__Stude__45F365D3" />
         <AssociationConnector Association="UMCSModel.FK_Contributions_Faculties" />

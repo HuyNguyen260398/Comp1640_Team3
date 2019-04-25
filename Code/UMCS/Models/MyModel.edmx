@@ -4,19 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="UMCSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="UMCSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
         <EntityType Name="Administrator">
           <Key>
             <PropertyRef Name="Username" />
           </Key>
-          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Username" Nullable="false" MaxLength="50" Type="nvarchar" />
+          <Property Name="Password" MaxLength="50" Type="varchar" />
         </EntityType>
         <EntityType Name="ClosureDate">
           <Key>
             <PropertyRef Name="AcademicYear" />
           </Key>
-          <Property Name="AcademicYear" Type="int" Nullable="false" />
+          <Property Name="AcademicYear" Nullable="false" Type="int" />
           <Property Name="ClosureDate" Type="date" />
           <Property Name="FinalClosureDate" Type="date" />
         </EntityType>
@@ -24,92 +24,92 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="StudentID" Type="int" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" MaxLength="50" Type="nvarchar" />
           <Property Name="DateSubmit" Type="date" />
           <Property Name="LastUpdate" Type="date" />
           <Property Name="CommentDate" Type="date" />
-          <Property Name="Description" Type="nvarchar" MaxLength="50" />
-          <Property Name="Type" Type="nvarchar" MaxLength="10" />
-          <Property Name="FileType" Type="nvarchar" MaxLength="10" />
-          <Property Name="ArchiveLink" Type="varchar" MaxLength="100" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" MaxLength="50" Type="nvarchar" />
+          <Property Name="Type" MaxLength="10" Type="nvarchar" />
+          <Property Name="FileType" MaxLength="10" Type="nvarchar" />
+          <Property Name="ArchiveLink" MaxLength="100" Type="varchar" />
+          <Property Name="Status" MaxLength="50" Type="nvarchar" />
           <Property Name="FID" Type="int" />
         </EntityType>
         <EntityType Name="Faculties">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FacultyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="FacultyName" MaxLength="50" Type="nvarchar" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="MarketingManagerID" Type="int" />
           <Property Name="FacultiesID" Type="int" />
-          <Property Name="Role" Type="nvarchar" MaxLength="50" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="Role" MaxLength="50" Type="nvarchar" />
+          <Property Name="FirstName" MaxLength="50" Type="nvarchar" />
+          <Property Name="LastName" MaxLength="50" Type="nvarchar" />
+          <Property Name="Gender" MaxLength="10" Type="nvarchar" />
           <Property Name="Age" Type="int" />
-          <Property Name="Image" Type="varchar" MaxLength="100" />
-          <Property Name="Phone" Type="varchar" MaxLength="20" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="EmailPW" Type="varchar" MaxLength="50" />
-          <Property Name="Address" Type="nvarchar" MaxLength="50" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Image" MaxLength="100" Type="varchar" />
+          <Property Name="Phone" MaxLength="20" Type="varchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="EmailPW" MaxLength="50" Type="varchar" />
+          <Property Name="Address" MaxLength="50" Type="nvarchar" />
+          <Property Name="Username" MaxLength="50" Type="nvarchar" />
+          <Property Name="Password" MaxLength="50" Type="varchar" />
         </EntityType>
         <EntityType Name="MarketingManager">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="FirstName" MaxLength="50" Type="nvarchar" />
+          <Property Name="LastName" MaxLength="50" Type="nvarchar" />
+          <Property Name="Gender" MaxLength="10" Type="nvarchar" />
           <Property Name="Age" Type="int" />
-          <Property Name="Image" Type="varchar" MaxLength="100" />
-          <Property Name="Phone" Type="varchar" MaxLength="20" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="Address" Type="nvarchar" MaxLength="50" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Image" MaxLength="100" Type="varchar" />
+          <Property Name="Phone" MaxLength="20" Type="varchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Address" MaxLength="50" Type="nvarchar" />
+          <Property Name="Username" MaxLength="50" Type="nvarchar" />
+          <Property Name="Password" MaxLength="50" Type="varchar" />
         </EntityType>
         <EntityType Name="Students">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="FacultiesID" Type="int" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="FirstName" MaxLength="50" Type="nvarchar" />
+          <Property Name="LastName" MaxLength="50" Type="nvarchar" />
+          <Property Name="Gender" MaxLength="10" Type="nvarchar" />
           <Property Name="DateOfBirth" Type="date" />
-          <Property Name="Image" Type="varchar" MaxLength="100" />
-          <Property Name="Phone" Type="varchar" MaxLength="20" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="Address" Type="nvarchar" MaxLength="50" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Image" MaxLength="100" Type="varchar" />
+          <Property Name="Phone" MaxLength="20" Type="varchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Address" MaxLength="50" Type="nvarchar" />
+          <Property Name="Username" MaxLength="50" Type="nvarchar" />
+          <Property Name="Password" MaxLength="50" Type="varchar" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="principal_id" Nullable="false" Type="int" />
+          <Property Name="diagram_id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK__Contribut__Stude__45F365D3">
-          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
-          <End Role="Contributions" Type="Self.Contributions" Multiplicity="*" />
+          <End Type="Self.Students" Multiplicity="0..1" Role="Students" />
+          <End Type="Self.Contributions" Multiplicity="*" Role="Contributions" />
           <ReferentialConstraint>
             <Principal Role="Students">
               <PropertyRef Name="ID" />
@@ -120,8 +120,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Students__Facult__1ED998B2">
-          <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <End Type="Self.Faculties" Multiplicity="0..1" Role="Faculties" />
+          <End Type="Self.Students" Multiplicity="*" Role="Students" />
           <ReferentialConstraint>
             <Principal Role="Faculties">
               <PropertyRef Name="ID" />
@@ -132,8 +132,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Contributions_Faculties">
-          <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
-          <End Role="Contributions" Type="Self.Contributions" Multiplicity="*" />
+          <End Type="Self.Faculties" Multiplicity="0..1" Role="Faculties" />
+          <End Type="Self.Contributions" Multiplicity="*" Role="Contributions" />
           <ReferentialConstraint>
             <Principal Role="Faculties">
               <PropertyRef Name="ID" />
@@ -144,8 +144,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Faculty_Faculties">
-          <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
+          <End Type="Self.Faculties" Multiplicity="0..1" Role="Faculties" />
+          <End Type="Self.Faculty" Multiplicity="*" Role="Faculty" />
           <ReferentialConstraint>
             <Principal Role="Faculties">
               <PropertyRef Name="ID" />
@@ -156,8 +156,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Faculty_MarketingManager">
-          <End Role="MarketingManager" Type="Self.MarketingManager" Multiplicity="0..1" />
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
+          <End Type="Self.MarketingManager" Multiplicity="0..1" Role="MarketingManager" />
+          <End Type="Self.Faculty" Multiplicity="*" Role="Faculty" />
           <ReferentialConstraint>
             <Principal Role="MarketingManager">
               <PropertyRef Name="ID" />
@@ -177,24 +177,24 @@
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Contribut__Stude__45F365D3" Association="Self.FK__Contribut__Stude__45F365D3">
-            <End Role="Students" EntitySet="Students" />
-            <End Role="Contributions" EntitySet="Contributions" />
+            <End EntitySet="Students" Role="Students" />
+            <End EntitySet="Contributions" Role="Contributions" />
           </AssociationSet>
           <AssociationSet Name="FK__Students__Facult__1ED998B2" Association="Self.FK__Students__Facult__1ED998B2">
-            <End Role="Faculties" EntitySet="Faculties" />
-            <End Role="Students" EntitySet="Students" />
+            <End EntitySet="Faculties" Role="Faculties" />
+            <End EntitySet="Students" Role="Students" />
           </AssociationSet>
           <AssociationSet Name="FK_Contributions_Faculties" Association="Self.FK_Contributions_Faculties">
-            <End Role="Faculties" EntitySet="Faculties" />
-            <End Role="Contributions" EntitySet="Contributions" />
+            <End EntitySet="Faculties" Role="Faculties" />
+            <End EntitySet="Contributions" Role="Contributions" />
           </AssociationSet>
           <AssociationSet Name="FK_Faculty_Faculties" Association="Self.FK_Faculty_Faculties">
-            <End Role="Faculties" EntitySet="Faculties" />
-            <End Role="Faculty" EntitySet="Faculty" />
+            <End EntitySet="Faculties" Role="Faculties" />
+            <End EntitySet="Faculty" Role="Faculty" />
           </AssociationSet>
           <AssociationSet Name="FK_Faculty_MarketingManager" Association="Self.FK_Faculty_MarketingManager">
-            <End Role="MarketingManager" EntitySet="MarketingManager" />
-            <End Role="Faculty" EntitySet="Faculty" />
+            <End EntitySet="MarketingManager" Role="MarketingManager" />
+            <End EntitySet="Faculty" Role="Faculty" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -342,29 +342,29 @@
           <EntitySet Name="Contributions" EntityType="UMCSModel.Contribution" />
           <EntitySet Name="sysdiagrams" EntityType="UMCSModel.sysdiagram" />
           <AssociationSet Name="FK__Contribut__Stude__45F365D3" Association="UMCSModel.FK__Contribut__Stude__45F365D3">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="Contribution" EntitySet="Contributions" />
+            <End EntitySet="Students" Role="Student" />
+            <End EntitySet="Contributions" Role="Contribution" />
           </AssociationSet>
           <AssociationSet Name="FK_Contributions_Faculties" Association="UMCSModel.FK_Contributions_Faculties">
-            <End Role="Faculty" EntitySet="Faculties" />
-            <End Role="Contribution" EntitySet="Contributions" />
+            <End EntitySet="Faculties" Role="Faculty" />
+            <End EntitySet="Contributions" Role="Contribution" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contribution">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="StudentID" Type="Int32" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DateSubmit" Type="DateTime" Precision="0" />
-          <Property Name="LastUpdate" Type="DateTime" Precision="0" />
-          <Property Name="CommentDate" Type="DateTime" Precision="0" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="FileType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ArchiveLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="DateSubmit" Precision="0" Type="DateTime" />
+          <Property Name="LastUpdate" Precision="0" Type="DateTime" />
+          <Property Name="CommentDate" Precision="0" Type="DateTime" />
+          <Property Name="Description" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Type" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="FileType" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ArchiveLink" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Status" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="FID" Type="Int32" />
           <NavigationProperty Name="Student" Relationship="UMCSModel.FK__Contribut__Stude__45F365D3" FromRole="Contribution" ToRole="Student" />
           <NavigationProperty Name="Faculty" Relationship="UMCSModel.FK_Contributions_Faculties" FromRole="Contribution" ToRole="Faculty" />
@@ -380,8 +380,8 @@
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK__Contribut__Stude__45F365D3">
-          <End Type="UMCSModel.Student" Role="Student" Multiplicity="0..1" />
-          <End Type="UMCSModel.Contribution" Role="Contribution" Multiplicity="*" />
+          <End Type="UMCSModel.Student" Multiplicity="0..1" Role="Student" />
+          <End Type="UMCSModel.Contribution" Multiplicity="*" Role="Contribution" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="ID" />
@@ -392,8 +392,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Contributions_Faculties">
-          <End Type="UMCSModel.Faculty" Role="Faculty" Multiplicity="0..1" />
-          <End Type="UMCSModel.Contribution" Role="Contribution" Multiplicity="*" />
+          <End Type="UMCSModel.Faculty" Multiplicity="0..1" Role="Faculty" />
+          <End Type="UMCSModel.Contribution" Multiplicity="*" Role="Contribution" />
           <ReferentialConstraint>
             <Principal Role="Faculty">
               <PropertyRef Name="ID" />
