@@ -31,7 +31,7 @@
                                     <div class="courses-title">
                                         @{
                                             var image = item.ArchiveLink;
-
+                                            var path = item.Title + item.FileType;
 
                                             if (item.Type == "Document")
                                             {
@@ -53,7 +53,8 @@
                                             }
                                             else
                                             {
-                                                <a href="#"><img src="@item.ArchiveLink" alt="" style="width:260px; height:180px"></a>
+                                                image = "/Files/" + item.Title + item.FileType;
+                                                <a href="#"><img src=@image alt="" style="width:260px; height:180px"></a>
                                             }
                                         }
 
@@ -65,7 +66,7 @@
                                         <p><span><i class="fa fa-clock"></i></span> <b>Status:</b> @item.Status</p>
                                     </div>
                                     <div class="product-buttons">
-                                        <a href="@Url.Action("Download", "Students", new { FileName = item.Title })" class="btn btn-primary">Download</a>
+                                        <a href="@Url.Action("Download", "Students", new { FilePath = path })" class="btn btn-primary">Download</a>
                                     </div>
                                 </div>
                             </div>

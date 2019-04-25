@@ -174,7 +174,8 @@ namespace UMCS.Controllers
                         return View();
                     }
 
-                    string filename = String.Concat(student.FirstName, student.LastName, "_SID", student.ID, "_", student.Faculty.FacultyName, "_", Path.GetFileName(file.FileName));
+                    string title = String.Concat(student.FirstName, student.LastName, "_SID", student.ID, "_", student.Faculty.FacultyName, "_", Path.GetFileNameWithoutExtension(file.FileName));
+                    string filename = String.Concat(title, checkExtension);
                     string path = Path.Combine(Server.MapPath("~/Files"), Path.GetFileName(filename));
                     file.SaveAs(path);
 
@@ -192,12 +193,13 @@ namespace UMCS.Controllers
                     Contribution contribution = new Contribution
                     {
                         StudentID = s_id,
-                        Title = filename,
+                        Title = title,
                         DateSubmit = DateTime.Now,
                         LastUpdate = DateTime.Now,
                         Type = type,
                         FileType = checkExtension,
-                        ArchiveLink = "/Files/" + filename,
+                        //ArchiveLink = "/Files/" + filename,
+                        ArchiveLink = path,
                         Status = "Pending"
                     };
                     db.Contributions.Add(contribution);
@@ -220,9 +222,9 @@ namespace UMCS.Controllers
             return View();
         }
 
-        public FileResult Download(string fileName)
+        public FileResult Download(string FilePath)
         {
-            var FileVirtualPath = "~/Files/" + fileName;
+            var FileVirtualPath = "~/Files/" + FilePath;
             return File(FileVirtualPath, "application/force- download", Path.GetFileName(FileVirtualPath));
         }
 

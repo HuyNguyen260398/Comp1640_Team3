@@ -54,7 +54,8 @@
                                         }
                                         else
                                         {
-                                            <td><img src="@item.ArchiveLink" alt="" /></td>
+                                            image = "/Files/" + item.Title + item.FileType;
+                                            <td><img src=@image alt="" /></td>
                                         }
                                     }
                                     <td>@item.Title</td>
