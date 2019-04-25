@@ -31,9 +31,9 @@
                                                             {
                                                                 <div class="file-button">
                                                                     Browse
-                                                                    <input type="text" name="file" onchange="document.getElementById('prepend-big-btn').value = this.value;">
+                                                                    <input type="text" name="file" onchange="document.getElementById('prepend-big-btn').value = this.value;" disabled>
                                                                 </div>
-                                                                <input type="text" id="prepend-big-btn" placeholder="no file selected">
+                                                                <input type="text" id="prepend-big-btn" placeholder="no file selected" disabled>
                                                             }
                                                             else
                                                             {
@@ -62,7 +62,7 @@
 
                                                 </div>
                                             }
-                                            else if (ViewBag.Message != null)
+                                            if (ViewBag.Message != null)
                                             {
                                                 <div class="row" style="margin-top:20px">
                                                     <div class="alert alert-success">
@@ -74,7 +74,7 @@
 
                                                 </div>
                                             }
-                                            else if (ViewBag.Error!= null)
+                                            if (ViewBag.Error != null)
                                             {
                                                 <div class="row" style="margin-top:20px">
                                                     <div class="alert alert-danger">
