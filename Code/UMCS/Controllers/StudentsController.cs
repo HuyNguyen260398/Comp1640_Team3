@@ -268,6 +268,7 @@ namespace UMCS.Controllers
                 IsBodyHtml = true,
             })
                 smtp.Send(message);
+
         }
     }
 }
