@@ -77,6 +77,7 @@ namespace UMCS.Controllers
                     Session["F_ID"] = null;
                     Session["Username"] = modelF.Username;
                     Session["Admin_Username"] = null;
+                    Session["f"] = modelF.FacultiesID;
                     Session["Img"] = modelF.Image.ToString();
                     return RedirectToAction("LoadData", "MarketingCoordinators");
                 }
@@ -130,6 +131,7 @@ namespace UMCS.Controllers
             Session["Username"] = null;
             Session["Img"] = null;
             Session["Admin_Username"] = null;
+            Session["f"] = null;
             return RedirectToAction("Login");
         }
 

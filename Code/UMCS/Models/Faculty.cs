@@ -19,6 +19,7 @@ namespace UMCS.Models
         {
             this.Students = new HashSet<Student>();
             this.Faculties = new HashSet<Faculty1>();
+            this.Contributions = new HashSet<Contribution>();
         }
     
         public int ID { get; set; }
@@ -28,5 +29,7 @@ namespace UMCS.Models
         public virtual ICollection<Student> Students { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Faculty1> Faculties { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contribution> Contributions { get; set; }
     }
 }

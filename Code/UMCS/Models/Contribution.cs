@@ -25,7 +25,9 @@ namespace UMCS.Models
         public string FileType { get; set; }
         public string ArchiveLink { get; set; }
         public string Status { get; set; }
+        public Nullable<int> FID { get; set; }
     
         public virtual Student Student { get; set; }
+        public virtual Faculty Faculty { get; set; }
     }
 }
