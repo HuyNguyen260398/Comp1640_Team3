@@ -15,32 +15,40 @@ namespace UMCS.Controllers
     {
         private UMCSEntities db = new UMCSEntities();
 
-        // GET: Faculty1
-        public ActionResult ShowReport(string year)
+        public ActionResult Index()
         {
-            //int intYear = Convert.ToInt32(year);
-            //var faculties = db.Faculties1;
-            //var contribution = db.Contributions.Where(c => c.DateSubmit.Value.Year ==intYear);
-            List<ReportModel> report = new List<ReportModel>();
+            return View(db.Faculties1.ToList());
+        }
 
-            //foreach (var facultiesItem in faculties)
-            //{
-            //    var Count = 0;
-            //    foreach (var contributionItem in contribution.Where(c => c.Student.FacultiesID == facultiesItem.CategoryId))
-            //    {
-            //        Count++;
-            //    }
-            //    report.Add(new DataPoint()
-            //    {
-            //        CategoryId = facultiesItem.CategoryId,
-            //        CategoryName = facultiesItem.CategoryName,
-            //        NumberOfIssue = Count,
-            //    });
-            //}
-            //ViewBag.MonthReport = month;
-            //ViewBag.YearReport = year;
-            //GetCateMenu();
-            return View(report);
+        // GET: Faculty1
+        public ActionResult ShowStatistic(string year)
+        {
+            int intYear = Convert.ToInt32(year);
+            var faculties = db.Faculties;
+            var contribution = db.Contributions.Where(c => c.DateSubmit.Value.Year == intYear);
+            List<ReportModel> report = new List<ReportModel>();
+            int total = contribution.Count();
+
+            foreach (var facultiesItem in faculties)
+            {
+                var Count = 0;
+
+                foreach (var contributionItem in contribution.Where(c => c.FID == facultiesItem.ID))
+                {
+                    Count++;
+                }
+                report.Add(new ReportModel()
+                {
+                    FacultyId = facultiesItem.ID,
+                    FacultyName = facultiesItem.FacultyName,
+                    NumberOfContribution = Count,
+                    PercentOfContribution = "",
+                    NumberOfContributor = 0,
+                });
+            }
+            
+            ViewBag.YearReport = year;
+            return View(report.ToList());
         }
     }
 }

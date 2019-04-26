@@ -36,11 +36,9 @@ namespace UMCS.Controllers
         {
             var faculty  = db.Faculties1.Find(Convert.ToInt32(Session["MC_ID"]));
 
-            //var fromEmail = new MailAddress(faculty.Email);
             var fromEmail = new MailAddress(faculty.Email);
             var toEmail = new MailAddress(s_email);
             var fromEmailPassword = faculty.EmailPW;
-            //var fromEmailPassword = faculty.EmailPW;
 
             var smtp = new SmtpClient
             {

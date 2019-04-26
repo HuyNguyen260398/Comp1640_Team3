@@ -90,7 +90,7 @@ namespace UMCS.Controllers
                     Session["Username"] = modelF.Username;
                     Session["Admin_Username"] = null;
                     Session["Img"] = modelF.Image.ToString();
-                    return RedirectToAction("", "");
+                    return RedirectToAction("ShowStatistic", "Faculty1");
                 }
                 else
                 {

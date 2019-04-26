@@ -554,6 +554,8 @@
     <Content Include="Views\MarketingManagers\ContributionsList.cshtml" />
     <Content Include="Views\Faculties\Report.cshtml" />
     <Content Include="Views\Layout\Faculty.cshtml" />
+    <Content Include="Views\Faculty1\ShowStatistic.cshtml" />
+    <Content Include="Views\Faculty1\Index.cshtml" />
     <Content Include="Views\MarketingManagers\Faculties.cshtml" />
     <Content Include="Views\MarketingManagers\Teachers.cshtml" />
     <Content Include="Views\MarketingManagers\Students.cshtml" />
@@ -568,7 +570,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Avatars\" />
     <Folder Include="Files\" />
-    <Folder Include="Views\Faculty1\" />
+    <Folder Include="Views\Faculties\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
