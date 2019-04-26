@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using UMCS.Models;
+using PagedList;
 
 namespace UMCS.Controllers
 {
@@ -71,10 +72,58 @@ namespace UMCS.Controllers
             return RedirectToAction("LoadData");
         }
 
-        public ActionResult LoadData()
+        public ActionResult LoadData(int? page, string s_name, string s_id, string fileName, string status, string type, DateTime? submitDate)
         {
-            var files = db.Contributions.ToList();
-            return View(files);
+            List<SelectListItem> list1 = new List<SelectListItem>();
+            list1.Add(new SelectListItem { Text = "File Type", Value = "refresh" });
+            list1.Add(new SelectListItem { Text = "Document", Value = "Document" });
+            list1.Add(new SelectListItem { Text = "Image", Value = "Image" });
+
+            ViewBag.Type = list1;
+
+            List<SelectListItem> list2 = new List<SelectListItem>();
+            list2.Add(new SelectListItem { Text = "Upload Status", Value = "refresh" });
+            list2.Add(new SelectListItem { Text = "Pending", Value = "Pending" });
+            list2.Add(new SelectListItem { Text = "Commented", Value = "Commented" });
+            list2.Add(new SelectListItem { Text = "Selected", Value = "Selected" });
+            list2.Add(new SelectListItem { Text = "Unselected", Value = "Unselected" });
+
+            ViewBag.Status = list2;
+
+            int f_id = Convert.ToInt32(Session["f"]);
+            var files = db.Contributions.Where(f => f.FID == f_id).AsQueryable();
+
+            if (!String.IsNullOrEmpty(s_name))
+            {
+                files = files.Where(n => n.Student.FirstName.Contains(s_name));
+            }
+
+            if (!String.IsNullOrEmpty(s_id))
+            {
+                int sid = Convert.ToInt32(s_id);
+                files = files.Where(n => n.StudentID == sid);
+            }
+
+            if (!String.IsNullOrEmpty(fileName))
+            {
+                files = files.Where(n => n.Title.Contains(fileName));
+            }
+
+            if (!String.IsNullOrEmpty(submitDate.ToString()))
+            {
+                files = files.Where(d => d.DateSubmit == submitDate);
+            }
+
+            if (type != null && type != "refresh")
+            {
+                files = files.Where(t => t.Type.Equals(type));
+            }
+
+            if (status != null && status != "refresh")
+            {
+                files = files.Where(t => t.Status.Equals(status));
+            }
+            return View(files.OrderByDescending(o => o.DateSubmit).ToPagedList(page ?? 1, 20));
         }
 
         public ActionResult ChageStatus(int id)

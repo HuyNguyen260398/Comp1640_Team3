@@ -17,6 +17,10 @@ namespace UMCS.Controllers
         // GET: MarketingManagers
         public ActionResult Index()
         {
+            ViewBag.Faculties = db.Faculties.Count();
+            ViewBag.Teachers = db.Faculties1.Count();
+            ViewBag.Students = db.Students.Count();
+            ViewBag.Contributions = db.Contributions.Where(c => c.Status == "Selected" || c.Status == "Commented").Count();
             return View();
         }
 

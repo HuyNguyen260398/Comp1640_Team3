@@ -18,7 +18,7 @@
                 var MC = role.SingleOrDefault(r => r.FacultiesID == item.ID);
                 var teacherCount = db.Faculties1.Where(t => t.FacultiesID == item.ID).Count();
                 var studentCount = db.Students.Where(s => s.FacultiesID == item.ID).Count();
-                var contriCount = db.Contributions.Where(c => c.Student.FacultiesID == item.ID).Count();
+                var contriCount = db.Contributions.Where(c => c.Student.FacultiesID == item.ID && (c.Status == "Selected" || c.Status == "Commented")).Count();
 
                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                     <div class="courses-inner mg-t-30">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="course-des">
                             <p><span><i class="fa fa-clock"></i></span> <b>Marketing Coordinator:</b> @(MC.LastName + " " + MC.FirstName)</p>
-                            <p><span><i class="fa fa-clock"></i></span> <b>Contributions:</b> @contriCount</p>
+                            <p><span><i class="fa fa-clock"></i></span> <b>Selected Contributions:</b> @contriCount</p>
                         </div>
                         <div class="product-buttons">
                             <a href="@Url.Action("ContributionsList", "MarketingManagers" , new {id = item.ID })" class="btn" style="background-color:#006DF0; color:white">View Contributions</a>

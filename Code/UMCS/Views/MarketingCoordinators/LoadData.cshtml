@@ -1,10 +1,44 @@
-﻿@model List<UMCS.Models.Contribution>
+﻿@model PagedList.IPagedList<UMCS.Models.Contribution>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedListAdmin.css" rel="stylesheet" />
+
 @{
     ViewBag.Title = "Accept";
     List<String> status = new List<string> { "Commented", "Selected", "Unselected" };
+    int i = 0;
     Layout = "~/Views/Layout/MC.cshtml";
 }
 
+<div class="header-advance-area">
+    <div class="breadcome-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcome-list">
+                        <div class="row">
+                            @using (Html.BeginForm("LoadData", "MarketingCoordinators", FormMethod.Get))
+                            {
+                                <table class="table">
+                                    <tr style="border-top:hidden">
+                                        <td>@Html.TextBox("s_name", "", new { @placeholder = "Student's First Name", @class = "form-control" })</td>
+                                        <td>@Html.TextBox("s_id", "", new { @placeholder = "Student's ID", @class = "form-control" })</td>
+                                        <td>@Html.TextBox("fileName", "", new { @placeholder = "File's Name", @class = "form-control" })</td>
+                                        <td>@Html.TextBox("submitDate", "", new { @placeholder = "Submit Date", @type = "date", @class = "form-control" })</td>
+                                        <td>@Html.DropDownList("type", (IEnumerable<SelectListItem>)ViewBag.Type, htmlAttributes: new { @class = "form-control" })</td>
+                                        <td>@Html.DropDownList("status", (IEnumerable<SelectListItem>)ViewBag.Status, htmlAttributes: new { @class = "form-control" })</td>
+                                        <td><input type="submit" value="Search" class="btn" style="background-color:#006DF0; color:white" /></td>
+                                        <td><a href=@Url.Action("LoadData", "MarketingCoordinators") class="btn" style="background-color:#006DF0; color:white">Refresh</a></td>
+                                    </tr>
+                                </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -18,25 +52,35 @@
                 <div class="sparkline13-graph">
                     <div class="datatable-dashv1-list custom-datatable-overright">
 
-                        <table id="table" data-toggle="table" data-search="true"
-                                data-toolbar="#toolbar">
+                        <table class="table" style="border: 2px solid #006DF0">
                             <thead>
                                 <tr>
-                                    <th>Title</th>
-                                    <th>Type</th>
-                                    <th>File Type</th>
-                                    <th>Status</th>
-                                    <th>#</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">No</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">First Name</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">Last Name</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">ID</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">File Name</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">Date Submit</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">Type</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">File Type</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">Status</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.Where(a=> a.FID == Convert.ToInt32(Session["f"])))
+                                @foreach (var item in Model)
                                 {
+                                    i += 1;
                                     <tr>
-                                        <td>@item.Title</td>
-                                        <td>@item.Type</td>
-                                        <td>@item.FileType</td>
-                                        <td>
+                                        <td style="text-align:center">@i</td>
+                                        <td style="text-align:center">@item.Student.FirstName</td>
+                                        <td style="text-align:center">@item.Student.LastName</td>
+                                        <td style="text-align:center">@item.StudentID</td>
+                                        <td style="text-align:center">@item.Title</td>
+                                        <td style="text-align:center">@item.DateSubmit</td>
+                                        <td style="text-align:center">@item.Type</td>
+                                        <td style="text-align:center">@item.FileType</td>
+                                        <td style="text-align:center">
                                             @{
                                                 switch (item.Status)
                                                 {
@@ -46,45 +90,45 @@
                                                         </div>
                                                         break;
                                                     case "Commented":
-                                                        <div class="badge bg-info"style="width:80px">
+                                                        <div class="badge bg-info" style="width:80px">
                                                             @item.Status
                                                         </div>
                                                         break;
                                                     case "Selected":
-                                                        <div class="badge bg-success"style="width:80px">
+                                                        <div class="badge bg-success" style="width:80px">
                                                             @item.Status
                                                         </div>
                                                         break;
                                                     case "Unselected":
-                                                        <div class="badge bg-danger"style="width:80px">
+                                                        <div class="badge bg-danger" style="width:80px">
                                                             @item.Status
                                                         </div>
                                                         break;
                                                 }
                                             }
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @{
                                                 if (item.Status == "Pending")
                                                 {
-                                                    <a href="javascript:void(0);" class="LoginEmail btn btn-info" data-id="@item.ID"  style="width:100px">
+                                                    <a href="javascript:void(0);" class="LoginEmail btn btn-info" data-id="@item.ID" style="width:100px">
                                                         <i class="far fa-comment"></i>
                                                         <span>Comment</span>
                                                     </a>
                                                     @*@Html.ActionLink("Comment", "SendEmail", "MarketingCoordinators",
-                new { id = item.ID }, new { @class = "btn btn-info" });*@
+                                                        new { id = item.ID }, new { @class = "btn btn-info" });*@
                                                 }
                                                 else
                                                 {
                                                     if (Session["ChangeStatus"] == null)
                                                     {
                                                         <a href="@Url.Action("ChageStatus", "MarketingCoordinators", new { id = item.ID})"
-                                                           class="btn btn-warning"  style="width:100px">
+                                                           class="btn btn-warning" style="width:100px">
                                                             <i class="fas fa-edit"></i>
                                                             <span style="width:100px">Change</span>
                                                         </a>
                                                     }
-                                                    else if (Session["ChangeStatus"] != null && 
+                                                    else if (Session["ChangeStatus"] != null &&
                                                         item.ID == int.Parse(Session["ChangeStatus"].ToString()))
                                                     {
                                                         <form action="@Url.Action("UpdateStatus")" method="get">
@@ -108,7 +152,7 @@
                                                     else
                                                     {
                                                         <a href="@Url.Action("ChageStatus", "MarketingCoordinators", new { id = item.ID})"
-                                                            class="btn btn-warning">
+                                                           class="btn btn-warning">
                                                             <i class="fas fa-edit"></i>
                                                             <span>Change</span>
                                                         </a>
@@ -121,6 +165,29 @@
 
                             </tbody>
                         </table>
+
+                        <div style="margin-left: 30px">
+                            <h6 style="color:#006DF0; font-size:15px">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h6>
+
+                            @Html.PagedListPager(Model, page => Url.Action("Repository", new
+                       {
+                           page,
+                           s_name = Request.QueryString["s_name"],
+                           s_id = Request.QueryString["s_id"],
+                           fileName = Request.QueryString["fileName"],
+                           submitDate = Request.QueryString["submitDate"],
+                           type = Request.QueryString["type"],
+                           status = Request.QueryString["status"],
+                       }),
+                                                       new PagedListRenderOptions
+                                                       {
+                                                           DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                                           DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                                           DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                                           DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                                           MaximumPageNumbersToDisplay = 3
+                                                       })
+                        </div>
                     </div>
                 </div>
             </div>
