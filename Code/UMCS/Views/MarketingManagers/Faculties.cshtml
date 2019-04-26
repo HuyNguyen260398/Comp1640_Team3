@@ -1,0 +1,89 @@
+﻿@model PagedList.IPagedList<UMCS.Models.Faculty>
+@using UMCS.Models;
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedListAdmin.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Faculties";
+    Layout = "~/Views/Layout/MM.cshtml";
+    UMCSEntities db = new UMCSEntities();
+}
+
+<div class="header-advance-area">
+    <div class="breadcome-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcome-list">
+                        <div class="row">
+                            @using (Html.BeginForm("Faculties", "MarketingManagers", FormMethod.Get))
+                            {
+                                <table class="table" style="width:50% ;margin-bottom: -2px">
+                                    <tr style="border-top:hidden">
+                                        <td><h3>Faculties List</h3></td>
+                                        <td>@Html.TextBox("f_name", "", new { @placeholder = "Faculty Name", @class = "form-control" })</td>
+                                        <td style="width:30px"><input type="submit" value="Search" class="btn" style="background-color:#006DF0; color:white" /></td>
+                                        <td><a href=@Url.Action("Faculties", "MarketingManagers") class="btn" style="background-color:#006DF0; color:white">Refresh</a></td>
+                                    </tr>
+                                </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="courses-area">
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                var role = db.Faculties1.Where(m => m.Role == "Marketing Coordinator");
+                var MC = role.SingleOrDefault(r => r.FacultiesID == item.ID);
+                var teacherCount = db.Faculties1.Where(t => t.FacultiesID == item.ID).Count();
+                var studentCount = db.Students.Where(s => s.FacultiesID == item.ID).Count();
+                var contriCount = db.Contributions.Where(c => c.Student.FacultiesID == item.ID && (c.Status == "Selected" || c.Status == "Commented")).Count();
+
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                    <div class="courses-inner">
+                        <div class="courses-title">
+                            <a href="#"><img src="~/Template/kiaalap-master/img/courses/1.jpg" alt=""></a>
+                            <h2>@item.FacultyName</h2>
+                        </div>
+                        <div class="courses-alaltic">
+                            <span class="cr-ic-r"><span class="course-icon"><i class="educate-icon educate-professor"></i></span> @teacherCount</span>
+                            <span class="cr-ic-r"><span class="course-icon"><i class="educate-icon educate-student"></i></span> @studentCount</span>
+                        </div>
+                        <div class="course-des">
+                            <p><span><i class="fa fa-clock"></i></span> <b>Marketing Coordinator:</b> @(MC.LastName + " " + MC.FirstName)</p>
+                            <p><span><i class="fa fa-clock"></i></span> <b>Total Contributions:</b> @contriCount</p>
+                        </div>
+                        <div class="product-buttons">
+                            <a href="@Url.Action("ContributionsList", "MarketingManagers" , new {id = item.ID })" class="btn" style="background-color:#006DF0; color:white">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row" style="margin-left: 30px; margin-top: 40px">
+            <h6 style="color:#006DF0; font-size:15px">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h6>
+
+            @Html.PagedListPager(Model, page => Url.Action("Repository", new
+       {
+           page,
+           f_name = Request.QueryString["s_name"],
+       }),
+                                       new PagedListRenderOptions
+                                       {
+                                           DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                           DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                           DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                                           DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                                           MaximumPageNumbersToDisplay = 3
+                                       })
+        </div>
+    </div>
+</div>

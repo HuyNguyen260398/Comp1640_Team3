@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using UMCS.Models;
 using UMCS.Models.Extended;
+using PagedList;
 
 namespace UMCS.Controllers
 {
@@ -37,6 +38,30 @@ namespace UMCS.Controllers
             var selectedContributes = contributesList.Where(s => s.Status == "Selected" || s.Status == "Commented").ToList();
             ViewBag.FID = f_id;
             return View(selectedContributes);
+        }
+
+        public ActionResult Faculties(int? page, string f_name)
+        {
+            var faculties = db.Faculties.AsQueryable();
+
+            if (!String.IsNullOrEmpty(f_name))
+            {
+                faculties = faculties.Where(f => f.FacultyName.Contains(f_name));
+            }
+
+            return View(faculties.OrderBy(f => f.FacultyName).ToPagedList(page ?? 1 , 20));
+        }
+
+        public ActionResult Teachers()
+        {
+            var teachers = db.Faculties1.ToList();
+            return View(teachers);
+        }
+
+        public ActionResult Students()
+        {
+            var students = db.Students.ToList();
+            return View(students);
         }
 
         public FileResult DownloadZip(string id)
