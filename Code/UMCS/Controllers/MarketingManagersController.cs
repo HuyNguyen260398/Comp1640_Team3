@@ -49,19 +49,100 @@ namespace UMCS.Controllers
                 faculties = faculties.Where(f => f.FacultyName.Contains(f_name));
             }
 
-            return View(faculties.OrderBy(f => f.FacultyName).ToPagedList(page ?? 1 , 20));
+            return View(faculties.OrderBy(f => f.FacultyName).ToPagedList(page ?? 1 , 8));
         }
 
-        public ActionResult Teachers()
+        public ActionResult Teachers(int? page, string t_name, string role, string faculty, string gender)
         {
-            var teachers = db.Faculties1.ToList();
-            return View(teachers);
+            List<SelectListItem> list1 = new List<SelectListItem>();
+            list1.Add(new SelectListItem { Text = "Gender", Value = "refresh" });
+            list1.Add(new SelectListItem { Text = "Male", Value = "Male" });
+            list1.Add(new SelectListItem { Text = "Female", Value = "Female" });
+
+            List<SelectListItem> list2 = new List<SelectListItem>();
+            list2.Add(new SelectListItem { Text = "Role", Value = "refresh" });
+            list2.Add(new SelectListItem { Text = "Teacher", Value = "Faculty" });
+            list2.Add(new SelectListItem { Text = "Marketing Coordinator", Value = "Marketing Coordinator" });
+
+            List<SelectListItem> list3 = new List<SelectListItem>();
+            list3.Add(new SelectListItem { Text = "Faculty", Value = "refresh" });
+            foreach (var item in db.Faculties)
+            {
+                list3.Add(new SelectListItem()
+                {
+                    Text = item.FacultyName.ToString(),
+                    Value = item.FacultyName.ToString()
+                });
+            }
+
+            ViewBag.Gender = list1;
+            ViewBag.Role = list2;
+            ViewBag.Faculty = list3;
+
+            var teachers = db.Faculties1.AsQueryable();
+
+            if (!String.IsNullOrEmpty(t_name))
+            {
+                teachers = teachers.Where(t => t.FirstName.Contains(t_name) || t.LastName.Contains(t_name));
+            }
+
+            if (role != null && role != "refresh")
+            {
+                teachers = teachers.Where(t => t.Role == role);
+            }
+
+            if (faculty != null && faculty != "refresh")
+            {
+                teachers = teachers.Where(t => t.Faculty.FacultyName.Equals(faculty));
+            }
+
+            if (gender != null && gender != "refresh")
+            {
+                teachers = teachers.Where(t => t.Gender.Equals(gender));
+            }
+
+            return View(teachers.OrderBy(t => t.FirstName).ToPagedList(page ?? 1 , 8));
         }
 
-        public ActionResult Students()
+        public ActionResult Students(int? page, string s_name, string gender, string faculty)
         {
-            var students = db.Students.ToList();
-            return View(students);
+            List<SelectListItem> list1 = new List<SelectListItem>();
+            list1.Add(new SelectListItem { Text = "Gender", Value = "refresh" });
+            list1.Add(new SelectListItem { Text = "Male", Value = "Male" });
+            list1.Add(new SelectListItem { Text = "Female", Value = "Female" });
+
+            List<SelectListItem> list2 = new List<SelectListItem>();
+            list2.Add(new SelectListItem { Text = "Faculty", Value = "refresh" });
+            foreach (var item in db.Faculties)
+            {
+                list2.Add(new SelectListItem()
+                {
+                    Text = item.FacultyName.ToString(),
+                    Value = item.FacultyName.ToString()
+                });
+            }
+
+            ViewBag.Gender = list1;
+            ViewBag.Faculty = list2;
+
+            var students = db.Students.AsQueryable();
+
+            if (!String.IsNullOrEmpty(s_name))
+            {
+                students = students.Where(s => s.FirstName.Contains(s_name) || s.LastName.Contains(s_name));
+            }
+
+            if (faculty != null && faculty != "refresh")
+            {
+                students = students.Where(s => s.Faculty.FacultyName.Equals(faculty));
+            }
+
+            if (gender != null && gender != "refresh")
+            {
+                students = students.Where(s => s.Gender.Equals(gender));
+            }
+
+            return View(students.OrderBy(s => s.FirstName).ToPagedList(page ?? 1, 8));
         }
 
         public FileResult DownloadZip(string id)

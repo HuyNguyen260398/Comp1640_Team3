@@ -17,13 +17,13 @@
                         <div class="row">
                             @using (Html.BeginForm("Repository", "Students", FormMethod.Get))
                             {
-                                <table class="table">
+                                <table class="table" style="margin-bottom: -2px">
                                     <tr style="border-top:hidden">
                                         <td>@Html.TextBox("fileName", "", new { @placeholder = "File's Name", @class = "form-control" })</td>
                                         <td>@Html.TextBox("submitDate", "", new { @placeholder = "Submit Date", @type = "date", @class = "form-control" })</td>
                                         <td>@Html.DropDownList("type", (IEnumerable<SelectListItem>)ViewBag.Type, htmlAttributes: new { @class = "form-control" })</td>
                                         <td>@Html.DropDownList("status", (IEnumerable<SelectListItem>)ViewBag.Status, htmlAttributes: new { @class = "form-control" })</td>
-                                        <td><input type="submit" value="Search" class="btn" style="background-color:#006DF0; color:white" /></td>
+                                        <td style="width:30px"><input type="submit" value="Search" class="btn" style="background-color:#006DF0; color:white" /></td>
                                         <td><a href=@Url.Action("Repository", "Students") class="btn" style="background-color:#006DF0; color:white">Refresh</a></td>
                                     </tr>
                                 </table>
@@ -36,10 +36,10 @@
     </div>
 </div>
 
-<div class="courses-area" style="margin: 20px auto">
+<div class="courses-area">
     <div class="container-fluid">
         <div class="row">
-            <div class="admintab-wrap edu-tab1 mg-t-30">
+            <div class="admintab-wrap edu-tab1">
                 @*<ul class="nav nav-tabs custom-menu-wrap custon-tab-menu-style1">
                         <li class="active">
                             <a data-toggle="tab" href="#TabProject"><span class="edu-icon edu-analytics tab-custon-ic"></span>View All</a>

@@ -275,7 +275,7 @@ namespace UMCS.Controllers
                 files = files.Where(t => t.Status.Equals(status));
             }
 
-            return View(files.OrderByDescending(o => o.DateSubmit).ToPagedList(page ?? 1, 20));
+            return View(files.OrderByDescending(o => o.DateSubmit).ToPagedList(page ?? 1, 8));
         }
         
 

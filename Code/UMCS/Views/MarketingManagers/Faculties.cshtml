@@ -68,13 +68,14 @@
                 </div>
             }
         </div>
+
         <div class="row" style="margin-left: 30px; margin-top: 40px">
             <h6 style="color:#006DF0; font-size:15px">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</h6>
 
-            @Html.PagedListPager(Model, page => Url.Action("Repository", new
+            @Html.PagedListPager(Model, page => Url.Action("Faculties", new
        {
            page,
-           f_name = Request.QueryString["s_name"],
+           f_name = Request.QueryString["f_name"],
        }),
                                        new PagedListRenderOptions
                                        {

@@ -555,6 +555,8 @@
     <Content Include="Views\Faculties\Report.cshtml" />
     <Content Include="Views\Layout\Faculty.cshtml" />
     <Content Include="Views\MarketingManagers\Faculties.cshtml" />
+    <Content Include="Views\MarketingManagers\Teachers.cshtml" />
+    <Content Include="Views\MarketingManagers\Students.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
