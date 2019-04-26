@@ -19,10 +19,8 @@
     <Use64BitIISExpress />
     <IISExpressSSLPort>
     </IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>
-    </IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>
-    </IISExpressWindowsAuthentication>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -449,6 +447,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Faculty1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarketingCoordinatorsController.cs" />
     <Compile Include="Controllers\MarketingManagersController.cs" />
@@ -466,6 +465,7 @@
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\FileModel.cs" />
+    <Compile Include="Models\Extended\ReportModel.cs" />
     <Compile Include="Models\Extended\Student.cs" />
     <Compile Include="Models\Faculty.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
@@ -544,12 +544,14 @@
     <Content Include="Views\MarketingCoordinators\LoadData.cshtml" />
     <Content Include="Views\Admin\SetClosureDate.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Layout\ADMIN.cshtml" />
+    <Content Include="Views\Layout\Admin.cshtml" />
     <Content Include="Views\MarketingCoordinators\Edit.cshtml" />
     <Content Include="Views\MarketingCoordinators\_LoginEmail.cshtml" />
     <Content Include="Views\MarketingManagers\Index.cshtml" />
     <Content Include="Views\MarketingManagers\FacultiesList.cshtml" />
     <Content Include="Views\MarketingManagers\ContributionsList.cshtml" />
+    <Content Include="Views\Faculties\Report.cshtml" />
+    <Content Include="Views\Layout\Faculty.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -561,6 +563,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Avatars\" />
     <Folder Include="Files\" />
+    <Folder Include="Views\Faculty1\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
