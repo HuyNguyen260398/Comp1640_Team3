@@ -1,0 +1,162 @@
+﻿@model IEnumerable<UMCS.Models.Extended.ReportModel>
+
+@{
+    ViewBag.Title = "ShowStatistic";
+    Layout = "~/Views/Layout/Faculty.cshtml";
+}
+
+@using (Ajax.BeginForm("ShowStatistic", "Faculty1", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
+{
+    <h4 style="float:left">View report in </h4>
+    <div style="float:right">
+        <select id="year" name="year">
+            <option value="2017">2018</option>
+            <option value="2018">2019</option>
+        </select>
+        <input type="submit" value="Report" class="btn btn-primary" />
+    </div>
+}
+
+
+@{
+    var count = 0;
+    foreach (var item in Model)
+    {
+        if (item.NumberOfContribution != 0)
+        {
+            count++;
+        }
+    }
+    if (count == 0)
+    {
+        <h3 style="text-align:center">No Result Found</h3>
+    }
+    else
+    {
+        <div style="height:500px">
+            <div id="chartContainer1" style="float:left; width:50%"></div>
+            <table id="tableForReport" class="table" style="margin-top: 20px; float:right">
+                <thead class="table-cate-header">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FacultyId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FacultyName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NumberOfContribution)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PercentOfContribution)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NumberOfContributor)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-cate-header">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FacultyId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FacultyName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NumberOfContribution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PercentOfContribution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NumberOfContributor)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div style="height:500px">
+            <div id="chartContainer2"></div>
+        </div>
+        <hr />
+    }
+}
+
+<script>
+    $(document).ready(function() {
+        var option1 =
+        {
+            theme: "theme2",
+            exportEnabled: true,
+            animationEnabled: true,
+            animationDuration: 2000,
+            height: 500,
+            title: {
+                text: "Number of Contributions in each Faculties in @ViewBag.YearReport",
+                //maxWidth: 600,
+                margin: 20,
+            },
+            axisX: { labelAngle: 0, },
+            axisY: {
+                title: "Contribution Number",
+                interval: 1
+            },
+            data: [
+            {
+                type: "column",
+                indexLabel: "{y}",
+                //indexLabelPlacement: "outside",
+                indexLabelOrientation: "horizontal",
+                indexLabelFontWeight: "bold",
+                dataPoints: [],
+            }
+            ]
+        };
+
+        var option2 =
+        {
+            theme: "theme2",
+            animationEnabled: true,
+            animationDuration: 2000,
+            //height: 500,
+            //width: 550,
+            title: {
+                text: "Number of Contributions in each Faculties in @ViewBag.YearReport",
+                maxWidth: 600,
+                margin: 20,
+            },
+            legend: {
+                fontSize: 15,
+                verticalAlign: "center",
+                horizontalAlign: "left",
+                itemWidth: 200,
+            },
+            data: [
+                {
+                    type: "pie",
+                    indexLabelFontSize: 15,
+                    indexLabel: "#percent%",
+                    percentFormatString: "#0.#",
+                    radius: "75%",
+                    showInLegend: true,
+                    legendText: "{label}",
+                    toolTipContent: "{label}: #percent%",
+                    dataPoints: [],
+                }
+            ]
+        };
+        @foreach(var item in Model){
+            @:option1.data[0].dataPoints.push({ label: "@item.FacultyName", y: @item.NumberOfContribution});
+            @:option2.data[0].dataPoints.push({label: "@item.FacultyName", y: @item.NumberOfContribution});
+        };
+        chart1 = new CanvasJS.Chart("chartContainer1", option1);
+        chart1.render();
+        chart2 = new CanvasJS.Chart("chartContainer2", option2);
+        chart2.render();
+    });
+</script>
+
