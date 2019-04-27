@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -31,19 +32,30 @@ namespace UMCS.Controllers
 
             foreach (var facultiesItem in faculties)
             {
-                var Count = 0;
+                var contributionCount = 0;
+                ArrayList stList = new ArrayList();
 
                 foreach (var contributionItem in contribution.Where(c => c.FID == facultiesItem.ID))
                 {
-                    Count++;
+                    contributionCount++;
+
+                    int i;
+                    for (i = 0; i < stList.Count && !stList[i].Equals(contributionItem.StudentID); i++) ;
+
+                    if (i == stList.Count)
+                    {
+                        stList.Add(contributionItem.StudentID);
+                    }
                 }
+
+                float percent = (float)contributionCount / (float)total;
                 report.Add(new ReportModel()
                 {
                     FacultyId = facultiesItem.ID,
                     FacultyName = facultiesItem.FacultyName,
-                    NumberOfContribution = Count,
-                    PercentOfContribution = "",
-                    NumberOfContributor = 0,
+                    NumberOfContribution = contributionCount,
+                    PercentOfContribution = String.Format("{0:P1}", percent),
+                    NumberOfContributor = stList.Count,
                 });
             }
             

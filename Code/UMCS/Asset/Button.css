@@ -21,3 +21,8 @@
 .bg-danger {
     background-color: #d9534f;
 }
+
+.select-edit {
+    padding: 5px;
+    font-size: 20px;
+}

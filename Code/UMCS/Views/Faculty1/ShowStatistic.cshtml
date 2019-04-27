@@ -5,17 +5,32 @@
     Layout = "~/Views/Layout/Faculty.cshtml";
 }
 
-@using (Ajax.BeginForm("ShowStatistic", "Faculty1", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
-{
-    <h4 style="float:left">View report in </h4>
-    <div style="float:right">
-        <select id="year" name="year">
-            <option value="2017">2018</option>
-            <option value="2018">2019</option>
-        </select>
-        <input type="submit" value="Report" class="btn btn-primary" />
+
+<div class="header-advance-area">
+    <div class="breadcome-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="breadcome-list">
+                        <div class="row" style="margin-left: 15px">
+                            @using (Ajax.BeginForm("ShowStatistic", "Faculty1", new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "Get" }))
+                            {
+                                <h3 style="float:left; padding-top:5px">View report in </h3>
+                                <div style="float:left; padding-left: 10px">
+                                    <select class="select-edit" id="year" name="year">
+                                        <option value="2018">2018</option>
+                                        <option value="2019" selected>2019</option>
+                                    </select>
+                                    <input type="submit" value="Report" class="btn btn-primary" style="margin:0 0 5px 20px" />
+                                </div>
+                            }
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-}
+</div>
 
 
 @{
@@ -33,55 +48,151 @@
     }
     else
     {
-        <div style="height:500px">
-            <div id="chartContainer1" style="float:left; width:50%"></div>
-            <table id="tableForReport" class="table" style="margin-top: 20px; float:right">
-                <thead class="table-cate-header">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.FacultyId)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.FacultyName)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.NumberOfContribution)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.PercentOfContribution)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.NumberOfContributor)
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="table-cate-header">
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FacultyId)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FacultyName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NumberOfContribution)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PercentOfContribution)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NumberOfContributor)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div class="courses-area mg-b-15">
+            <div class="container-fluid">
+                @*Number of Contribution Report*@
+                <div class="row">
+                    <div class="col-sm-7 col-md-7 col-lg-7 col-xs-12" style="height:400px">
+                        <div id="chartContainer1">
+                            @*<div id="chartContainer1" class="courses-inner res-mg-b-30"></div>*@
+                            @*<div id="chartContainer1"></div>*@
+                        </div>
+                    </div>
+
+                    <div class="col-sm-5 col-md-5 col-lg-5 col-xs-12">
+                        <table id="tableForReport1" class="table">
+                            <thead class="table-cate-header">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FacultyId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FacultyName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NumberOfContribution)
+                                    </th>
+                                    @*<th>
+                                @Html.DisplayNameFor(model => model.PercentOfContribution)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NumberOfContributor)
+                            </th>*@
+                                </tr>
+                            </thead>
+                            <tbody class="table-cate-header">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FacultyId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FacultyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NumberOfContribution)
+                                        </td>
+                                        @*<td>
+                                    @Html.DisplayFor(modelItem => item.PercentOfContribution)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NumberOfContributor)
+                                </td>*@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                @*Percent of Contribution Report*@
+                <div class="row mg-t-30">
+                    <div class="col-sm-7 col-md-7 col-lg-7 col-xs-12" style="height:400px">
+                        <div id="chartContainer2"></div>
+                    </div>
+
+                    <div class="col-sm-5 col-md-5 col-lg-5 col-xs-12">
+                        <table id="tableForReport2" class="table">
+                            <thead class="table-cate-header">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FacultyId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FacultyName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PercentOfContribution)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-cate-header">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FacultyId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FacultyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PercentOfContribution)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                @*Number of Contributing Student Report*@
+                <div class="row mg-t-30">
+                    <div class="col-sm-7 col-md-7 col-lg-7 col-xs-12" style="height:350px">
+                        <div id="chartContainer3"></div>
+                    </div>
+
+                    <div class="col-sm-5 col-md-5 col-lg-5 col-xs-12">
+                        <table id="tableForReport3" class="table">
+                            <thead class="table-cate-header">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FacultyId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FacultyName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NumberOfContributor)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-cate-header">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FacultyId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FacultyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NumberOfContributor)
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="height:500px">
-            <div id="chartContainer2"></div>
-        </div>
+        
+        @*<div style="height:500px">
+            <div id="chartContainer3"></div>
+        </div>*@
         <hr />
     }
 }
@@ -90,28 +201,32 @@
     $(document).ready(function() {
         var option1 =
         {
-            theme: "theme2",
+            theme: "theme1",
             exportEnabled: true,
             animationEnabled: true,
             animationDuration: 2000,
-            height: 500,
+            height: 400,
+            //width: 473,
             title: {
                 text: "Number of Contributions in each Faculties in @ViewBag.YearReport",
-                //maxWidth: 600,
-                margin: 20,
+                maxWidth: 450,
+                margin: 30,
+                fontFamily: "Calibri",
+                fontSize: 35,
+                fontWeight: "bold",
             },
             axisX: { labelAngle: 0, },
             axisY: {
-                title: "Contribution Number",
-                interval: 1
+                //indexLabel: "{y}",
+                //indexLabelPlacement: "outside",
+                //indexLabelOrientation: "horizontal",
+                //indexLabelFontWeight: "bold",
+                title: "Number of Contributions",
+                interval: 1,
             },
             data: [
             {
                 type: "column",
-                indexLabel: "{y}",
-                //indexLabelPlacement: "outside",
-                indexLabelOrientation: "horizontal",
-                indexLabelFontWeight: "bold",
                 dataPoints: [],
             }
             ]
@@ -119,20 +234,24 @@
 
         var option2 =
         {
-            theme: "theme2",
+            theme: "theme1",
+            exportEnabled: true,
             animationEnabled: true,
             animationDuration: 2000,
             //height: 500,
             //width: 550,
             title: {
-                text: "Number of Contributions in each Faculties in @ViewBag.YearReport",
-                maxWidth: 600,
-                margin: 20,
+                text: "Percent of Contributions in each Faculties in @ViewBag.YearReport",
+                maxWidth: 450,
+                margin: 10,
+                fontFamily: "Calibri",
+                fontSize: 35,
+                fontWeight: "bold",
             },
             legend: {
                 fontSize: 15,
                 verticalAlign: "center",
-                horizontalAlign: "left",
+                horizontalAlign: "right",
                 itemWidth: 200,
             },
             data: [
@@ -141,7 +260,7 @@
                     indexLabelFontSize: 15,
                     indexLabel: "#percent%",
                     percentFormatString: "#0.#",
-                    radius: "75%",
+                    radius: "90%",
                     showInLegend: true,
                     legendText: "{label}",
                     toolTipContent: "{label}: #percent%",
@@ -149,14 +268,54 @@
                 }
             ]
         };
+
+        var option3 =
+        {
+            theme: "theme2",
+            exportEnabled: true,
+            animationEnabled: true,
+            animationDuration: 2000,
+            height: 350,
+            title: {
+                text: "Number of Students that contribute in each Faculties in @ViewBag.YearReport",
+                margin: 20,
+                fontFamily: "Calibri",
+                fontSize: 35,
+            },
+            axisX: {
+                interval: 1,
+                labelFontSize: 15,
+            },
+            axisY: {
+                //interlacedColor: "rgba(1,77,101,.2)",
+                //gridColor: "rgba(1,77,101,.1)",
+                title: "Number of Students",
+                interval: 1,
+                titleFontSize: 20,
+                labelFontSize: 15,
+            },
+            data: [
+            {
+                type: "bar",
+                //name: "",
+                //axisYType: "secondary",
+                //color: "#c0504e",
+                dataPoints: [],
+            }
+            ]           
+        };
+
         @foreach(var item in Model){
             @:option1.data[0].dataPoints.push({ label: "@item.FacultyName", y: @item.NumberOfContribution});
-            @:option2.data[0].dataPoints.push({label: "@item.FacultyName", y: @item.NumberOfContribution});
+            @:option2.data[0].dataPoints.push({ label: "@item.FacultyName", y: @item.NumberOfContribution});
+            @:option3.data[0].dataPoints.push({label: "@item.FacultyName", y: @item.NumberOfContributor});
         };
         chart1 = new CanvasJS.Chart("chartContainer1", option1);
         chart1.render();
         chart2 = new CanvasJS.Chart("chartContainer2", option2);
         chart2.render();
+        chart3 = new CanvasJS.Chart("chartContainer3", option3);
+        chart3.render();
     });
 </script>
 
