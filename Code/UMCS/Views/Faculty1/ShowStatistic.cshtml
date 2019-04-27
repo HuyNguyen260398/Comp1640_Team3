@@ -63,42 +63,30 @@
                         <table id="tableForReport1" class="table">
                             <thead class="table-cate-header">
                                 <tr>
-                                    <th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">
                                         @Html.DisplayNameFor(model => model.FacultyId)
                                     </th>
-                                    <th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">
                                         @Html.DisplayNameFor(model => model.FacultyName)
                                     </th>
-                                    <th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">
                                         @Html.DisplayNameFor(model => model.NumberOfContribution)
                                     </th>
-                                    @*<th>
-                                @Html.DisplayNameFor(model => model.PercentOfContribution)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.NumberOfContributor)
-                            </th>*@
                                 </tr>
                             </thead>
                             <tbody class="table-cate-header">
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.FacultyId)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.FacultyName)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.NumberOfContribution)
                                         </td>
-                                        @*<td>
-                                    @Html.DisplayFor(modelItem => item.PercentOfContribution)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.NumberOfContributor)
-                                </td>*@
                                     </tr>
                                 }
                             </tbody>
@@ -116,13 +104,13 @@
                         <table id="tableForReport2" class="table">
                             <thead class="table-cate-header">
                                 <tr>
-                                    <th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">
                                         @Html.DisplayNameFor(model => model.FacultyId)
                                     </th>
-                                    <th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">
                                         @Html.DisplayNameFor(model => model.FacultyName)
                                     </th>
-                                    <th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">
                                         @Html.DisplayNameFor(model => model.PercentOfContribution)
                                     </th>
                                 </tr>
@@ -131,13 +119,13 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.FacultyId)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.FacultyName)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.PercentOfContribution)
                                         </td>
                                     </tr>
@@ -157,13 +145,13 @@
                         <table id="tableForReport3" class="table">
                             <thead class="table-cate-header">
                                 <tr>
-                                    <th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">
                                         @Html.DisplayNameFor(model => model.FacultyId)
                                     </th>
-                                    <th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">
                                         @Html.DisplayNameFor(model => model.FacultyName)
                                     </th>
-                                    <th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center">
                                         @Html.DisplayNameFor(model => model.NumberOfContributor)
                                     </th>
                                 </tr>
@@ -172,13 +160,13 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.FacultyId)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.FacultyName)
                                         </td>
-                                        <td>
+                                        <td style="text-align:center">
                                             @Html.DisplayFor(modelItem => item.NumberOfContributor)
                                         </td>
                                     </tr>

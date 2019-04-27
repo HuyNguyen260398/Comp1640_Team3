@@ -26,3 +26,9 @@
     padding: 5px;
     font-size: 20px;
 }
+
+.edit-total {
+    padding-left: unset;
+    margin-bottom: 20px;
+    font-size: 18px
+}

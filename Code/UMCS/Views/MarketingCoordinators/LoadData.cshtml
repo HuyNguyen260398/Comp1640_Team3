@@ -72,7 +72,8 @@
                                         <td style="text-align:center">@item.Student.LastName</td>
                                         <td style="text-align:center">@item.StudentID</td>
                                         <td style="text-align:center">@item.Title</td>
-                                        <td style="text-align:center">@item.DateSubmit</td>
+                                        @*<td style="text-align:center">@item.DateSubmit</td>*@
+                                        <td style="text-align:center">@Html.DisplayFor(model => item.DateSubmit)</td>
                                         <td style="text-align:center">@item.Type</td>
                                         <td style="text-align:center">@item.FileType</td>
                                         <td style="text-align:center">

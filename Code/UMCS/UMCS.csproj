@@ -57,6 +57,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -112,6 +115,7 @@
   <ItemGroup>
     <Content Include="Asset\Button.css" />
     <Content Include="Asset\MainLayout.css" />
+    <Content Include="Asset\Table.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -544,7 +548,6 @@
     <Content Include="Views\Admin\SetClosureDate.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Layout\Admin.cshtml" />
-    <Content Include="Views\MarketingCoordinators\Edit.cshtml" />
     <Content Include="Views\MarketingCoordinators\_LoginEmail.cshtml" />
     <Content Include="Views\MarketingManagers\Index.cshtml" />
     <Content Include="Views\MarketingManagers\FacultiesList.cshtml" />
@@ -556,6 +559,7 @@
     <Content Include="Views\MarketingManagers\Faculties.cshtml" />
     <Content Include="Views\MarketingManagers\Teachers.cshtml" />
     <Content Include="Views\MarketingManagers\Students.cshtml" />
+    <Content Include="Views\Faculty1\ShowReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -567,6 +571,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Avatars\" />
     <Folder Include="Files\" />
+    <Folder Include="Report\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
