@@ -13,7 +13,7 @@ namespace UMCS.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            return View("SetClosureDate");
         }
 
         [HttpGet]
