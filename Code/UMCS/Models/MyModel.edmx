@@ -14,9 +14,10 @@
         </EntityType>
         <EntityType Name="ClosureDate">
           <Key>
-            <PropertyRef Name="AcademicYear" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="AcademicYear" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AcademicYear" Type="nvarchar" MaxLength="50" />
           <Property Name="ClosureDate" Type="date" />
           <Property Name="FinalClosureDate" Type="date" />
         </EntityType>
@@ -26,7 +27,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StudentID" Type="int" />
-          <Property Name="Title" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="DateSubmit" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
           <Property Name="CommentDate" Type="datetime" />
@@ -109,7 +110,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Students__Facult__46E78A0C">
+        <Association Name="FK__Students__Facult__1FCDBCEB">
+          <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculties">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="FacultiesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__Facult__2C3393D0">
           <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
           <End Role="Students" Type="Self.Students" Multiplicity="*" />
           <ReferentialConstraint>
@@ -169,7 +182,11 @@
             <End Role="Students" EntitySet="Students" />
             <End Role="Contributions" EntitySet="Contributions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Students__Facult__46E78A0C" Association="Self.FK__Students__Facult__46E78A0C">
+          <AssociationSet Name="FK__Students__Facult__1FCDBCEB" Association="Self.FK__Students__Facult__1FCDBCEB">
+            <End Role="Faculties" EntitySet="Faculties" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__Facult__2C3393D0" Association="Self.FK__Students__Facult__2C3393D0">
             <End Role="Faculties" EntitySet="Faculties" />
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
@@ -196,14 +213,6 @@
           </Key>
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="ClosureDate">
-          <Key>
-            <PropertyRef Name="AcademicYear" />
-          </Key>
-          <Property Name="AcademicYear" Type="Int32" Nullable="false" />
-          <Property Name="ClosureDate1" Type="DateTime" Precision="0" />
-          <Property Name="FinalClosureDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
@@ -311,7 +320,6 @@
         </Association>
         <EntityContainer Name="UMCSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrators" EntityType="Self.Administrator" />
-          <EntitySet Name="ClosureDates" EntityType="Self.ClosureDate" />
           <EntitySet Name="Faculties" EntityType="Self.Faculty" />
           <EntitySet Name="Faculties1" EntityType="Self.Faculty1" />
           <EntitySet Name="MarketingManagers" EntityType="Self.MarketingManager" />
@@ -337,6 +345,7 @@
             <End EntitySet="Faculties" Role="Faculty" />
             <End EntitySet="Contributions" Role="Contribution" />
           </AssociationSet>
+          <EntitySet Name="ClosureDates" EntityType="UMCSModel.ClosureDate" />
         </EntityContainer>
         <EntityType Name="Contribution">
           <Key>
@@ -344,7 +353,7 @@
           </Key>
           <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="StudentID" Type="Int32" />
-          <Property Name="Title" MaxLength="1000" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Title" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="DateSubmit" Precision="3" Type="DateTime" />
           <Property Name="LastUpdate" Precision="3" Type="DateTime" />
           <Property Name="CommentDate" Precision="3" Type="DateTime" />
@@ -381,6 +390,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ClosureDate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AcademicYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClosureDate1" Type="DateTime" Precision="0" />
+          <Property Name="FinalClosureDate" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -392,15 +410,6 @@
               <MappingFragment StoreEntitySet="Administrator">
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ClosureDates">
-            <EntityTypeMapping TypeName="UMCSModel.ClosureDate">
-              <MappingFragment StoreEntitySet="ClosureDate">
-                <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
-                <ScalarProperty Name="ClosureDate1" ColumnName="ClosureDate" />
-                <ScalarProperty Name="FinalClosureDate" ColumnName="FinalClosureDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -482,6 +491,16 @@
                 <ScalarProperty Name="DateSubmit" ColumnName="DateSubmit" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClosureDates">
+            <EntityTypeMapping TypeName="UMCSModel.ClosureDate">
+              <MappingFragment StoreEntitySet="ClosureDate">
+                <ScalarProperty Name="FinalClosureDate" ColumnName="FinalClosureDate" />
+                <ScalarProperty Name="ClosureDate1" ColumnName="ClosureDate" />
+                <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

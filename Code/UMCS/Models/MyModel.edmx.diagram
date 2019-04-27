@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="4745a33b07fe4b1697b173f1c300070c" Name="Diagram1">
         <EntityTypeShape EntityType="UMCSModel.Administrator" Width="1.5" PointX="2.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="UMCSModel.ClosureDate" Width="1.5" PointX="4.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="UMCSModel.Faculty" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="UMCSModel.Faculty1" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="UMCSModel.MarketingManager" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
@@ -17,6 +16,7 @@
         <EntityTypeShape EntityType="UMCSModel.Contribution" PointX="5.25" PointY="7.625" Width="1.5" />
         <AssociationConnector Association="UMCSModel.FK__Contribut__Stude__45F365D3" />
         <AssociationConnector Association="UMCSModel.FK_Contributions_Faculties" />
+        <EntityTypeShape EntityType="UMCSModel.ClosureDate" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
