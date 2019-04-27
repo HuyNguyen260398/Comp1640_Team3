@@ -26,12 +26,11 @@ namespace UMCS.Models
         }
     
         public virtual DbSet<Administrator> Administrators { get; set; }
-        public virtual DbSet<ClosureDate> ClosureDates { get; set; }
         public virtual DbSet<Faculty> Faculties { get; set; }
         public virtual DbSet<Faculty1> Faculties1 { get; set; }
         public virtual DbSet<MarketingManager> MarketingManagers { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Contribution> Contributions { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<ClosureDate> ClosureDates { get; set; }
     }
 }

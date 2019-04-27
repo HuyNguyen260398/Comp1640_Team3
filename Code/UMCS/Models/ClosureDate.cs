@@ -14,7 +14,8 @@ namespace UMCS.Models
     
     public partial class ClosureDate
     {
-        public int AcademicYear { get; set; }
+        public int ID { get; set; }
+        public string AcademicYear { get; set; }
         public Nullable<System.DateTime> ClosureDate1 { get; set; }
         public Nullable<System.DateTime> FinalClosureDate { get; set; }
     }

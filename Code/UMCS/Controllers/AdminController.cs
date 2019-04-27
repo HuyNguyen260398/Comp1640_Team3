@@ -25,7 +25,7 @@ namespace UMCS.Controllers
         [HttpPost]
         public ActionResult SetClosureDate(ClosureDate cd)
         {
-            if (cd.AcademicYear != 0 && cd.ClosureDate1 != null && cd.FinalClosureDate != null)
+            if (cd.AcademicYear != null && cd.ClosureDate1 != null && cd.FinalClosureDate != null)
             {
                 db.ClosureDates.Add(cd);
                 db.SaveChanges();
