@@ -57,9 +57,8 @@
                                     <th style="background-color: #006DF0; color:white; text-align:center">File Name</th>
                                     <th style="background-color: #006DF0; color:white; text-align:center">Date Submit</th>
                                     <th style="background-color: #006DF0; color:white; text-align:center">Type</th>
-                                    <th style="background-color: #006DF0; color:white; text-align:center">File Type</th>
                                     <th style="background-color: #006DF0; color:white; text-align:center">Status</th>
-                                    <th style="background-color: #006DF0; color:white; text-align:center">Actions</th>
+                                    <th style="background-color: #006DF0; color:white; text-align:center" colspan="2">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,7 +74,6 @@
                                         @*<td style="text-align:center">@item.DateSubmit</td>*@
                                         <td style="text-align:center">@Html.DisplayFor(model => item.DateSubmit)</td>
                                         <td style="text-align:center">@item.Type</td>
-                                        <td style="text-align:center">@item.FileType</td>
                                         <td style="text-align:center">
                                             @{
                                                 switch (item.Status)
@@ -156,6 +154,7 @@
                                                 }
                                             }
                                         </td>
+                                        <td style="text-align:center"><a href="@Url.Action("Download", "Students", new { FilePath = (item.Title + item.FileType) })" class="btn btn-sm" style="background-color:#006DF0;color:white"><i class="fa fa-download"></i></a></td>
                                     </tr>
                                 }
 
