@@ -32,6 +32,5 @@ namespace UMCS.Models
         public virtual DbSet<MarketingManager> MarketingManagers { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Contribution> Contributions { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }
