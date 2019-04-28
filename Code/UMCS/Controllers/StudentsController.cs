@@ -139,7 +139,7 @@ namespace UMCS.Controllers
         [HttpGet]
         public ActionResult Upload()
         {
-            var currentYear = DateTime.Now.Year.ToString();
+            var currentYear = DateTime.Now.Year;
             var currentDate = DateTime.Now.Date;
             var closureDate = db.ClosureDates.SingleOrDefault(c => c.AcademicYear == currentYear).ClosureDate1;
 

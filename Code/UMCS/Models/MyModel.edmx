@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="UMCSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="UMCSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrator">
           <Key>
             <PropertyRef Name="Username" />
@@ -17,7 +17,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AcademicYear" Type="nvarchar" MaxLength="50" />
+          <Property Name="AcademicYear" Type="int" />
           <Property Name="ClosureDate" Type="date" />
           <Property Name="FinalClosureDate" Type="date" />
         </EntityType>
@@ -27,10 +27,10 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StudentID" Type="int" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="DateSubmit" Type="datetime" />
-          <Property Name="LastUpdate" Type="datetime" />
-          <Property Name="CommentDate" Type="datetime" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateSubmit" Type="date" />
+          <Property Name="LastUpdate" Type="date" />
+          <Property Name="CommentDate" Type="date" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="Type" Type="nvarchar" MaxLength="10" />
           <Property Name="FileType" Type="nvarchar" MaxLength="10" />
@@ -110,19 +110,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Students__Facult__1FCDBCEB">
-          <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Faculties">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="FacultiesID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Students__Facult__2C3393D0">
+        <Association Name="FK__Students__Facult__32E0915F">
           <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
           <End Role="Students" Type="Self.Students" Multiplicity="*" />
           <ReferentialConstraint>
@@ -182,11 +170,7 @@
             <End Role="Students" EntitySet="Students" />
             <End Role="Contributions" EntitySet="Contributions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Students__Facult__1FCDBCEB" Association="Self.FK__Students__Facult__1FCDBCEB">
-            <End Role="Faculties" EntitySet="Faculties" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Students__Facult__2C3393D0" Association="Self.FK__Students__Facult__2C3393D0">
+          <AssociationSet Name="FK__Students__Facult__32E0915F" Association="Self.FK__Students__Facult__32E0915F">
             <End Role="Faculties" EntitySet="Faculties" />
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
@@ -203,7 +187,8 @@
             <End Role="Faculty" EntitySet="Faculty" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UMCSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -214,15 +199,43 @@
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="ClosureDate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AcademicYear" Type="Int32" />
+          <Property Name="ClosureDate1" Type="DateTime" Precision="0" />
+          <Property Name="FinalClosureDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Contribution">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateSubmit" Type="DateTime" Precision="0" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="0" />
+          <Property Name="CommentDate" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FileType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ArchiveLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FID" Type="Int32" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Contribut__Stude__45F365D3" FromRole="Contributions" ToRole="Students" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK_Contributions_Faculties" FromRole="Contributions" ToRole="Faculties" />
+        </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FacultyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Students" Relationship="Self.FK__Students__Facult__31EC6D26" FromRole="Faculties" ToRole="Students" />
+          <NavigationProperty Name="Contributions" Relationship="Self.FK_Contributions_Faculties" FromRole="Faculties" ToRole="Contributions" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Students__Facult__32E0915F" FromRole="Faculties" ToRole="Students" />
           <NavigationProperty Name="Faculties" Relationship="Self.FK_Faculty_Faculties" FromRole="Faculties" ToRole="Faculty" />
-          <NavigationProperty Name="Contributions" Relationship="UMCSModel.FK_Contributions_Faculties" FromRole="Faculty" ToRole="Contribution" />
         </EntityType>
         <EntityType Name="Faculty1">
           <Key>
@@ -279,10 +292,34 @@
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Faculty" Relationship="Self.FK__Students__Facult__31EC6D26" FromRole="Students" ToRole="Faculties" />
-          <NavigationProperty Name="Contributions" Relationship="UMCSModel.FK__Contribut__Stude__45F365D3" FromRole="Student" ToRole="Contribution" />
+          <NavigationProperty Name="Contributions" Relationship="Self.FK__Contribut__Stude__45F365D3" FromRole="Students" ToRole="Contributions" />
+          <NavigationProperty Name="Faculty" Relationship="Self.FK__Students__Facult__32E0915F" FromRole="Students" ToRole="Faculties" />
         </EntityType>
-        <Association Name="FK__Students__Facult__31EC6D26">
+        <Association Name="FK__Contribut__Stude__45F365D3">
+          <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Contributions" Type="Self.Contribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contributions">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contributions_Faculties">
+          <End Role="Faculties" Type="Self.Faculty" Multiplicity="0..1" />
+          <End Role="Contributions" Type="Self.Contribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculties">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contributions">
+              <PropertyRef Name="FID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Students__Facult__32E0915F">
           <End Role="Faculties" Type="Self.Faculty" Multiplicity="0..1" />
           <End Role="Students" Type="Self.Student" Multiplicity="*" />
           <ReferentialConstraint>
@@ -320,11 +357,21 @@
         </Association>
         <EntityContainer Name="UMCSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrators" EntityType="Self.Administrator" />
+          <EntitySet Name="ClosureDates" EntityType="Self.ClosureDate" />
+          <EntitySet Name="Contributions" EntityType="Self.Contribution" />
           <EntitySet Name="Faculties" EntityType="Self.Faculty" />
           <EntitySet Name="Faculties1" EntityType="Self.Faculty1" />
           <EntitySet Name="MarketingManagers" EntityType="Self.MarketingManager" />
           <EntitySet Name="Students" EntityType="Self.Student" />
-          <AssociationSet Name="FK__Students__Facult__31EC6D26" Association="Self.FK__Students__Facult__31EC6D26">
+          <AssociationSet Name="FK__Contribut__Stude__45F365D3" Association="Self.FK__Contribut__Stude__45F365D3">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Contributions" EntitySet="Contributions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contributions_Faculties" Association="Self.FK_Contributions_Faculties">
+            <End Role="Faculties" EntitySet="Faculties" />
+            <End Role="Contributions" EntitySet="Contributions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Students__Facult__32E0915F" Association="Self.FK__Students__Facult__32E0915F">
             <End Role="Faculties" EntitySet="Faculties" />
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
@@ -336,69 +383,7 @@
             <End Role="MarketingManager" EntitySet="MarketingManagers" />
             <End Role="Faculty" EntitySet="Faculties1" />
           </AssociationSet>
-          <EntitySet Name="Contributions" EntityType="UMCSModel.Contribution" />
-          <AssociationSet Name="FK__Contribut__Stude__45F365D3" Association="UMCSModel.FK__Contribut__Stude__45F365D3">
-            <End EntitySet="Students" Role="Student" />
-            <End EntitySet="Contributions" Role="Contribution" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contributions_Faculties" Association="UMCSModel.FK_Contributions_Faculties">
-            <End EntitySet="Faculties" Role="Faculty" />
-            <End EntitySet="Contributions" Role="Contribution" />
-          </AssociationSet>
-          <EntitySet Name="ClosureDates" EntityType="UMCSModel.ClosureDate" />
         </EntityContainer>
-        <EntityType Name="Contribution">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="StudentID" Type="Int32" />
-          <Property Name="Title" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="DateSubmit" Precision="3" Type="DateTime" />
-          <Property Name="LastUpdate" Precision="3" Type="DateTime" />
-          <Property Name="CommentDate" Precision="3" Type="DateTime" />
-          <Property Name="Description" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Type" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="FileType" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ArchiveLink" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="Status" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="FID" Type="Int32" />
-          <NavigationProperty Name="Student" Relationship="UMCSModel.FK__Contribut__Stude__45F365D3" FromRole="Contribution" ToRole="Student" />
-          <NavigationProperty Name="Faculty" Relationship="UMCSModel.FK_Contributions_Faculties" FromRole="Contribution" ToRole="Faculty" />
-        </EntityType>
-        <Association Name="FK__Contribut__Stude__45F365D3">
-          <End Type="UMCSModel.Student" Multiplicity="0..1" Role="Student" />
-          <End Type="UMCSModel.Contribution" Multiplicity="*" Role="Contribution" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Contribution">
-              <PropertyRef Name="StudentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contributions_Faculties">
-          <End Type="UMCSModel.Faculty" Multiplicity="0..1" Role="Faculty" />
-          <End Type="UMCSModel.Contribution" Multiplicity="*" Role="Contribution" />
-          <ReferentialConstraint>
-            <Principal Role="Faculty">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Contribution">
-              <PropertyRef Name="FID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ClosureDate">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AcademicYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ClosureDate1" Type="DateTime" Precision="0" />
-          <Property Name="FinalClosureDate" Type="DateTime" Precision="0" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -410,6 +395,34 @@
               <MappingFragment StoreEntitySet="Administrator">
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClosureDates">
+            <EntityTypeMapping TypeName="UMCSModel.ClosureDate">
+              <MappingFragment StoreEntitySet="ClosureDate">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
+                <ScalarProperty Name="ClosureDate1" ColumnName="ClosureDate" />
+                <ScalarProperty Name="FinalClosureDate" ColumnName="FinalClosureDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contributions">
+            <EntityTypeMapping TypeName="UMCSModel.Contribution">
+              <MappingFragment StoreEntitySet="Contributions">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="DateSubmit" ColumnName="DateSubmit" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="ArchiveLink" ColumnName="ArchiveLink" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -474,34 +487,6 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Contributions">
-            <EntityTypeMapping TypeName="UMCSModel.Contribution">
-              <MappingFragment StoreEntitySet="Contributions">
-                <ScalarProperty Name="FID" ColumnName="FID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ArchiveLink" ColumnName="ArchiveLink" />
-                <ScalarProperty Name="FileType" ColumnName="FileType" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="DateSubmit" ColumnName="DateSubmit" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ClosureDates">
-            <EntityTypeMapping TypeName="UMCSModel.ClosureDate">
-              <MappingFragment StoreEntitySet="ClosureDate">
-                <ScalarProperty Name="FinalClosureDate" ColumnName="FinalClosureDate" />
-                <ScalarProperty Name="ClosureDate1" ColumnName="ClosureDate" />
-                <ScalarProperty Name="AcademicYear" ColumnName="AcademicYear" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

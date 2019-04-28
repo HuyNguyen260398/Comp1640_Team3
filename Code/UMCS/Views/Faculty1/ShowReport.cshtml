@@ -38,71 +38,89 @@
             
 
             <div class="sparkline13-list">
-                <div class="col-6 col-sm-4 edit-total">
-                    <label style="margin-right:10px">Total Contributions</label>
-                    <span class="label-purple label-2 label">@ViewBag.TotalContribution Titles</span>
-                </div>
+                @{
+                    var count = 0;
+                    foreach (var item in Model)
+                    {
+                        if (item.NumberOfContribution != 0)
+                        {
+                            count++;
+                            break;
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        <h3 style="text-align:center; height:300px">No Result Found</h3>
+                    }
+                    else
+                    {
+                        <div class="col-6 col-sm-4 edit-total">
+                            <label style="margin-right:10px">Total Contributions</label>
+                            <span class="label-purple label-2 label">@ViewBag.TotalContribution Titles</span>
+                        </div>
 
-                <div class="col-6 col-sm-4 edit-total">
-                    <label style="margin-right:10px">Total Contributors</label>
-                    <span class="label-purple label-2 label">@ViewBag.TotalContributor Contributors</span>
-                </div>
+                        <div class="col-6 col-sm-4 edit-total">
+                            <label style="margin-right:10px">Total Contributors</label>
+                            <span class="label-purple label-2 label">@ViewBag.TotalContributor Contributors</span>
+                        </div>
 
-                <div class="sparkline13-graph">
-                    <div class="datatable-dashv1-list custom-datatable-overright">
-                        <table class="table" style="border: 2px solid #006DF0">
-                            <thead>
-                                <tr>
-                                    <th style="background-color: #006DF0; color:white; text-align:center">
-                                        @Html.DisplayNameFor(model => model.FacultyId)
-                                    </th>
+                        <div class="sparkline13-graph">
+                            <div class="datatable-dashv1-list custom-datatable-overright">
+                                <table class="table" style="border: 2px solid #006DF0">
+                                    <thead>
+                                        <tr>
+                                            <th style="background-color: #006DF0; color:white; text-align:center">
+                                                @Html.DisplayNameFor(model => model.FacultyId)
+                                            </th>
 
-                                    <th style="background-color: #006DF0; color:white; text-align:center">
-                                        @Html.DisplayNameFor(model => model.FacultyName)
-                                    </th>
+                                            <th style="background-color: #006DF0; color:white; text-align:center">
+                                                @Html.DisplayNameFor(model => model.FacultyName)
+                                            </th>
 
-                                    <th style="background-color: #006DF0; color:white; text-align:center">
-                                        @Html.DisplayNameFor(model => model.NumberOfContribution)
-                                    </th>
+                                            <th style="background-color: #006DF0; color:white; text-align:center">
+                                                @Html.DisplayNameFor(model => model.NumberOfContribution)
+                                            </th>
 
-                                    <th style="background-color: #006DF0; color:white; text-align:center">
-                                        @Html.DisplayNameFor(model => model.PercentOfContribution)
-                                    </th>
+                                            <th style="background-color: #006DF0; color:white; text-align:center">
+                                                @Html.DisplayNameFor(model => model.PercentOfContribution)
+                                            </th>
 
-                                    <th style="background-color: #006DF0; color:white; text-align:center">
-                                        @Html.DisplayNameFor(model => model.NumberOfContributor)
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td style="text-align:center">
-                                            @Html.DisplayFor(modelItem => item.FacultyId)
-                                        </td>
+                                            <th style="background-color: #006DF0; color:white; text-align:center">
+                                                @Html.DisplayNameFor(model => model.NumberOfContributor)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td style="text-align:center">
+                                                    @Html.DisplayFor(modelItem => item.FacultyId)
+                                                </td>
 
-                                        <td style="text-align:center">
-                                            @Html.DisplayFor(modelItem => item.FacultyName)
-                                        </td>
+                                                <td style="text-align:center">
+                                                    @Html.DisplayFor(modelItem => item.FacultyName)
+                                                </td>
 
-                                        <td style="text-align:center">
-                                            @Html.DisplayFor(modelItem => item.NumberOfContribution)
-                                        </td>
+                                                <td style="text-align:center">
+                                                    @Html.DisplayFor(modelItem => item.NumberOfContribution)
+                                                </td>
 
-                                        <td style="text-align:center">
-                                            @Html.DisplayFor(modelItem => item.PercentOfContribution)
-                                        </td>
+                                                <td style="text-align:center">
+                                                    @Html.DisplayFor(modelItem => item.PercentOfContribution)
+                                                </td>
 
-                                        <td style="text-align:center">
-                                            @Html.DisplayFor(modelItem => item.NumberOfContributor)
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                                                <td style="text-align:center">
+                                                    @Html.DisplayFor(modelItem => item.NumberOfContributor)
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
         </div>
     </div>
