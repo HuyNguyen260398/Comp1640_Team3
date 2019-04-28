@@ -287,8 +287,8 @@ namespace UMCS.Controllers
             var fromEmail = new MailAddress("umcsystem@gmail.com");
             var toEmail = new MailAddress(mc_email);
             var fromEmailPassword = "Comp1640";
-            string subject = "Student " + student.FirstName + "_SID" + student.ID + "_" + student.Faculty.FacultyName + " has uploaded a file to system!";
-            string body = "<p>Click <a href='#'>here</a> to view!";
+            string subject = "[Student Name] " + student.FirstName + "_[SID] " + student.ID + "_[Faculties] " + student.Faculty.FacultyName + " has uploaded a file to system!";
+            string body = "Please send a comment email to reply this contribution within <b>14 days</b>";
 
             var smtp = new SmtpClient
             {
