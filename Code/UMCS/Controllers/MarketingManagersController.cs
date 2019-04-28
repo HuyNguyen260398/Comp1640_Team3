@@ -31,11 +31,11 @@ namespace UMCS.Controllers
             return View(falcultieslist);
         }
 
-        public ActionResult ContributionsList(string id)
+        public ActionResult ContributionsList(string id, int? page)
         {
             int f_id = Convert.ToInt32(id);
             var contributesList = db.Contributions.Where(c => c.Student.FacultiesID == f_id);
-            var selectedContributes = contributesList.Where(s => s.Status == "Selected" || s.Status == "Commented").ToList();
+            var selectedContributes = contributesList.Where(s => s.Status == "Selected" || s.Status == "Commented").OrderBy(s => s.DateSubmit).ToPagedList(page ?? 1, 10);
             ViewBag.FID = f_id;
             return View(selectedContributes);
         }
