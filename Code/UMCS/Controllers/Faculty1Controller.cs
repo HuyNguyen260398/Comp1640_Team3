@@ -62,8 +62,13 @@ namespace UMCS.Controllers
                     NumberOfContributor = stList.Count,
                 });
             }
-            
-            ViewBag.YearReport = year;
+            if (Convert.ToInt32(year) == 0)
+            {
+                ViewBag.YearReport = "2019";
+            } else
+            {
+                ViewBag.YearReport = year;
+            }
             return View(report.ToList());
         }
 
