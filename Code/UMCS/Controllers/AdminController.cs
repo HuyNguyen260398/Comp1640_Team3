@@ -10,15 +10,21 @@ namespace UMCS.Controllers
     public class AdminController : Controller
     {
         UMCSEntities db = new UMCSEntities();
-        // GET: Admin
-        public ActionResult Index()
-        {
-            return View("SetClosureDate");
-        }
 
         [HttpGet]
         public ActionResult SetClosureDate()
         {
+            var maxDate = db.ClosureDates.Max(d => d.AcademicYear);
+            var currentYear = DateTime.Now.Year;
+
+            if (currentYear > maxDate)
+            {
+                ViewBag.AcademicYear = currentYear.ToString();
+            } else
+            {
+                ViewBag.AcademicYear = "Current Academic Year has been already set";
+            }
+
             return View();
         }
 
@@ -37,7 +43,13 @@ namespace UMCS.Controllers
                 ViewBag.Message = "Fail!";
             }
 
-            return View();
+            return RedirectToAction("ViewClosureDate", "Admin"); ;
+        }
+
+        public ActionResult ViewClosureDate()
+        {
+            var closureDate = db.ClosureDates;
+            return View(closureDate);
         }
     }
 }

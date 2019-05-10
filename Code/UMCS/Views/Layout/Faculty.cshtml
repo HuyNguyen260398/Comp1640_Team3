@@ -64,6 +64,7 @@
         <!-- style CSS
     ============================================ -->
         <link rel="stylesheet" href="~/Template/kiaalap-master/style.css">
+        <link href="~/Asset/MainLayout.css" rel="stylesheet" />
         <link href="~/Asset/Button.css" rel="stylesheet" />
         <link href="~/Asset/Table.css" rel="stylesheet" />
         <!-- responsive CSS
@@ -173,24 +174,7 @@
                 <div class="left-custom-menu-adp-wrap comment-scrollbar">
                     <nav class="sidebar-nav left-sidebar-menu-pro">
                         <ul class="metismenu" id="menu1">
-                            <li>
-                                <a class="has-arrow" href="#">
-                                    <span class="educate-icon educate-home icon-wrap"></span>
-                                    <span class="mini-click-non">Home</span>
-                                </a>
-                            </li>
-                            @*@if (Session["MM_ID"] != null)
-                            {
-                                <li>
-                                    <a class="has-arrow" href="all-professors.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">MM</span></a>
-                                    <ul class="submenu-angle" aria-expanded="false">
-                                        <li><a title="All Professors" href="all-professors.html"><span class="mini-sub-pro">View Codinator Manager</span></a></li>
-                                        <li><a title="Add Professor" href="add-professor.html"><span class="mini-sub-pro">View Faculty</span></a></li>
-                                        <li><a title="Edit Professor" href="edit-professor.html"><span class="mini-sub-pro">View Student</span></a></li>
-                                        <li><a title="Professor Profile" href="professor-profile.html"><span class="mini-sub-pro">View Codination</span></a></li>
-                                    </ul>
-                                </li>
-                            }*@
+                            
                             <li>
                                 <a class="has-arrow" href="@Url.Action("ShowStatistic","Faculty1")" aria-expanded="false">
                                     <span class="educate-icon educate-course icon-wrap"></span>
@@ -204,26 +188,6 @@
                                     <span class="mini-click-non">Overall Report</span>
                                 </a>
                             </li>
-                            @*@if (Session["S_ID"] != null)
-                            {
-                                <li>
-                                    <a class="has-arrow" href="all-students.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap"></span> <span class="mini-click-non">Students</span></a>
-                                    <ul class="submenu-angle" aria-expanded="false">
-                                        <li><a href=@Url.Action("Repository", "Students", new { id = Session["S_ID"] })><span class="mini-sub-pro">My Repository</span></a></li>
-                                        <li><a href=@Url.Action("Upload", "Students")><span class="mini-sub-pro">Upload Contribution</span></a></li>
-                                    </ul>
-                                </li>
-                            }
-                            @if (Session["F_ID"] != null)
-                            {
-                                <li>
-                                    <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Faculty</span></a>
-                                    <ul class="submenu-angle" aria-expanded="false">
-                                        <li><a title="All Courses" href="all-courses.html"><span class="mini-sub-pro">View contribution</span></a></li>
-
-                                    </ul>
-                                </li>
-                            }*@
 
                         </ul>
                     </nav>
@@ -426,7 +390,7 @@
 
             @RenderBody()
 
-            <div class="footer-copyright-area" style="width:100%">
+            <div class="footer-copyright-area">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">

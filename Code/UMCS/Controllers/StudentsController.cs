@@ -107,7 +107,7 @@ namespace UMCS.Controllers
                     Session["MC_ID"] = null;
                     Session["S_ID"] = null;
                     Session["MM_ID"] = null;
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("SetClosureDate", "Admin");
                 }
                 else
                 {
@@ -143,11 +143,13 @@ namespace UMCS.Controllers
             var currentDate = DateTime.Now.Date;
             var closureDate = db.ClosureDates.SingleOrDefault(c => c.AcademicYear == currentYear).ClosureDate1;
 
-            if (currentDate > closureDate)
+            if (closureDate == null)
+            {
+                ViewBag.Deadline = "Closure date has not been set! New contributions are disabled!";
+            } else if (currentDate > closureDate)
             {
                 ViewBag.Deadline = "Closure date is passed! New contributions are disabled!";
             }
-
 
             return View();
         }
