@@ -42,7 +42,7 @@ namespace UMCS.Controllers
                     Session["F_ID"] = null;
                     Session["Username"] = model.Username;
                     Session["Img"] = model.Image.ToString();
-                    return RedirectToAction("Repository/"+Session["S_ID"], "Students");
+                    return RedirectToAction("Repository/" + Session["S_ID"], "Students");
                 }
                 else
                 {
@@ -50,7 +50,7 @@ namespace UMCS.Controllers
                     return View();
                 }
             }
-            else if (modelMM !=null)
+            else if (modelMM != null)
             {
                 if (modelMM.Password == MM.Password)
                 {
@@ -82,7 +82,8 @@ namespace UMCS.Controllers
                     Session["Img"] = modelF.Image.ToString();
                     return RedirectToAction("LoadData", "MarketingCoordinators");
                 }
-                else if (modelF.Password == MC.Password && modelF.Role == "Faculty") {
+                else if (modelF.Password == MC.Password && modelF.Role == "Faculty")
+                {
                     Session["F_ID"] = modelF.ID;
                     Session["MC_ID"] = null;
                     Session["S_ID"] = null;
@@ -146,7 +147,8 @@ namespace UMCS.Controllers
             if (closureDate == null)
             {
                 ViewBag.Deadline = "Closure date has not been set! New contributions are disabled!";
-            } else if (currentDate > closureDate)
+            }
+            else if (currentDate > closureDate)
             {
                 ViewBag.Deadline = "Closure date is passed! New contributions are disabled!";
             }
@@ -167,7 +169,7 @@ namespace UMCS.Controllers
             var s_id = Convert.ToInt32(Session["S_ID"]);
             var student = db.Students.SingleOrDefault(s => s.ID == s_id);
             var marketing_coordinator = db.Faculties1.Where(a => a.FacultiesID == student.FacultiesID && a.Role == "Marketing Coordinator").SingleOrDefault();
-            
+
             if (file != null && file.ContentLength > 0)
             {
                 try
@@ -207,8 +209,9 @@ namespace UMCS.Controllers
                         FileType = checkExtension,
                         ArchiveLink = path,
                         Status = "Pending",
-                        FID = student.FacultiesID
+                        FID = Convert.ToInt32(student.FacultiesID)
                     };
+
                     db.Contributions.Add(contribution);
                     db.SaveChanges();
 
@@ -226,7 +229,7 @@ namespace UMCS.Controllers
                 ViewBag.Error = "You have not specified a file!";
             }
 
-            
+
             return View();
         }
 
@@ -279,7 +282,7 @@ namespace UMCS.Controllers
 
             return View(files.OrderByDescending(o => o.DateSubmit).ToPagedList(page ?? 1, 8));
         }
-        
+
 
         [NonAction]
         public void SendEmail(string mc_email, int student_id)

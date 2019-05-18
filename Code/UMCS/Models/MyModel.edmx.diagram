@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="39a7a63a4f61429db01b44c21f2eadbe" Name="Diagram1">
-        <EntityTypeShape EntityType="UMCSModel.Administrator" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UMCSModel.ClosureDate" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="UMCSModel.Contribution" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="UMCSModel.Faculty" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="UMCSModel.Faculty1" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="UMCSModel.MarketingManager" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="UMCSModel.Student" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
-        <AssociationConnector Association="UMCSModel.FK__Contribut__Stude__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="UMCSModel.FK_Contributions_Faculties" ManuallyRouted="false" />
-        <AssociationConnector Association="UMCSModel.FK__Students__Facult__32E0915F" ManuallyRouted="false" />
-        <AssociationConnector Association="UMCSModel.FK_Faculty_Faculties" ManuallyRouted="false" />
-        <AssociationConnector Association="UMCSModel.FK_Faculty_MarketingManager" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="UMCSModel.Administrator" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="UMCSModel.ClosureDate" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="UMCSModel.Contribution" Width="1.5" PointX="5.25" PointY="11.375" />
+        <EntityTypeShape EntityType="UMCSModel.Faculty" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="UMCSModel.Faculty1" Width="1.5" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="UMCSModel.MarketingManager" Width="1.5" PointX="0.75" PointY="2.375" />
+        <EntityTypeShape EntityType="UMCSModel.Student" Width="1.5" PointX="3" PointY="15.75" />
+        <AssociationConnector Association="UMCSModel.FK__Contribut__Stude__45F365D3" />
+        <AssociationConnector Association="UMCSModel.FK_Contributions_Faculties" />
+        <AssociationConnector Association="UMCSModel.FK__Students__Facult__46E78A0C" />
+        <AssociationConnector Association="UMCSModel.FK_Faculty_Faculties" />
+        <AssociationConnector Association="UMCSModel.FK_Faculty_MarketingManager" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
