@@ -89,8 +89,9 @@
                                                 }
                                                 else
                                                 {
-                                                    image = "/Files/" + item.Title + item.FileType;
-                                                    <a href="#"><img src=@image alt="" style="width:260px; height:180px"></a>
+                                                    //image = "/Files/" + item.Title + item.FileType;
+                                                    image = String.Concat("/Files/", item.Title, item.FileType);
+                                                    <a href="#"><img src=@(image) alt="" style="width:260px; height:180px"></a>
                                                 }
                                             }
 

@@ -183,7 +183,7 @@ namespace UMCS.Controllers
                         return View();
                     }
 
-                    string title = String.Concat(student.FirstName, student.LastName, "_SID", student.ID, "_", student.Faculty.FacultyName, "_", Path.GetFileNameWithoutExtension(file.FileName));
+                    string title = String.Concat(student.FirstName, student.LastName, "_SID", student.ID, "_", "FID", student.FacultiesID, "_", Path.GetFileNameWithoutExtension(file.FileName));
                     string filename = String.Concat(title, checkExtension);
                     string path = Path.Combine(Server.MapPath("~/Files"), Path.GetFileName(filename));
                     file.SaveAs(path);
